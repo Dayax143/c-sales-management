@@ -19,6 +19,30 @@ namespace key_luxery1
 			return new SqlConnection(Properties.Settings.Default.SqlConnectionString);
 		}
 
+		// Add this ExecuteScalar method to your SharedClass
+		public object ExecuteScalar(string query)
+		{
+			object result = null;
+
+			using (SqlConnection conn = GetConnection())
+			{
+				using (SqlCommand cmd = new SqlCommand(query, conn))
+				{
+					try
+					{
+						conn.Open();
+						result = cmd.ExecuteScalar();
+					}
+					catch (Exception ex)
+					{
+						throw new Exception("Error executing scalar query: " + ex.Message);
+					}
+				}
+			}
+
+			return result;
+		}
+
 		// Method for executing non-query commands (INSERT, UPDATE, DELETE)
 		public void ExecuteQueries(string _query)
 		{

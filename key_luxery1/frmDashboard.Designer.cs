@@ -541,6 +541,7 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Key Luxury - Dashboard";
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmDashboard_FormClosed);
 			this.Load += new System.EventHandler(this.frmDashboard_Load);
 			this.PnlSidebar.ResumeLayout(false);
 			this.panel3.ResumeLayout(false);

@@ -68,18 +68,18 @@ namespace key_luxery1
 
 		private void LoadCustomers()
 		{
-			try
-			{
-				DataTable dt = sharedClass.GetData("SELECT customer_id, customer_name, customer_phone FROM tblCustomer WHERE deleted = 0");
-				cmbCustomer.DataSource = dt;
-				cmbCustomer.DisplayMember = "customer_name";
-				cmbCustomer.ValueMember = "customer_id";
-				cmbCustomer.SelectedIndex = -1;
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show("Error loading customers: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
+			//try
+			//{
+			//	DataTable dt = sharedClass.GetData("SELECT customer_id, customer_name, customer_phone FROM tblCustomer WHERE deleted = 0");
+			//	cmbCustomer.DataSource = dt;
+			//	cmbCustomer.DisplayMember = "customer_name";
+			//	cmbCustomer.ValueMember = "customer_id";
+			//	cmbCustomer.SelectedIndex = -1;
+			//}
+			//catch (Exception ex)
+			//{
+			//	MessageBox.Show("Error loading customers: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			//}
 		}
 
 		// Search customer automatically by typing phone number
@@ -87,27 +87,27 @@ namespace key_luxery1
 		public int? selectedCustomerId ;
 		private void txtCustomerPhone_TextChanged(object sender, EventArgs e)
 		{
-			string phone = txtCustomerPhone.Text.Trim();
-			selectedCustomerId = null; // Reset if not found
+			//string phone = txtCustomerPhone.Text.Trim();
+			//selectedCustomerId = null; // Reset if not found
 
-			if (!string.IsNullOrEmpty(phone))
-			{
-				foreach (DataRowView item in cmbCustomer.Items)
-				{
-					DataRow row = item.Row;
-					string dbPhone = row["customer_phone"]?.ToString() ?? "";
+			//if (!string.IsNullOrEmpty(phone))
+			//{
+			//	foreach (DataRowView item in cmbCustomer.Items)
+			//	{
+			//		DataRow row = item.Row;
+			//		string dbPhone = row["customer_phone"]?.ToString() ?? "";
 
-					if (dbPhone.Equals(phone))
-					{
-						cmbCustomer.SelectedItem = item;
+			//		if (dbPhone.Equals(phone))
+			//		{
+			//			cmbCustomer.SelectedItem = item;
 
-						// Get the customer ID from the data row
-						selectedCustomerId = int.Parse(row["customer_id"].ToString());
-						txtcustomer_id.Text = selectedCustomerId.ToString();
-						break;
-					}
-				}
-			}
+			//			// Get the customer ID from the data row
+			//			selectedCustomerId = int.Parse(row["customer_id"].ToString());
+			//			txtcustomer_id.Text = selectedCustomerId.ToString();
+			//			break;
+			//		}
+			//	}
+			//}
 		}
 
 		// --- 2. FIND PRODUCT BY NAME & FETCH DATA ---
@@ -231,16 +231,9 @@ namespace key_luxery1
 
 			lblGrandTotalValue.Text = $"${grandTotal:N2}";
 		}
-
 		// --- 3. COMPLETE SALE & FINALISE DRAFT INVOICE ---
 		private void btnCompleteSale_Click(object sender, EventArgs e)
 		{
-			if (cmbCustomer.SelectedIndex == -1)
-			{
-				MessageBox.Show("Please select a customer.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				return;
-			}
-
 			if (dgvCart.Rows.Count == 0)
 			{
 				MessageBox.Show("Your cart is empty.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -249,7 +242,6 @@ namespace key_luxery1
 
 			try
 			{
-				string customerId = cmbCustomer.SelectedValue.ToString();
 				string saleDate = dtpSaleDate.Value.ToString("yyyy-MM-dd HH:mm:ss");
 				string paymentMethod = cmbPaymentMethod.Text;
 
@@ -261,49 +253,74 @@ namespace key_luxery1
 
 				decimal discount = 0;
 				decimal.TryParse(txtDiscount.Text.Trim(), out discount);
-				decimal grandTotal = subtotal - discount;
 
-				// 1. Update the Draft Invoice (Fixed column names to match database schema)
-				string updateInvoice = $"UPDATE tblInvoice SET " +
-									   $"invoice_date = '{saleDate}', " +
-									   $"subtotal = {subtotal}, " +
-									   $"discount = {discount}, " +
-									   $"grand_total = {grandTotal}, " +
-									   $"total_profit = {grandTotal}, " +
-									   $"status = 'Paid' " +
-									   $"WHERE invoice_id = {currentInvoiceId}";
-				db.ExecuteQueries(updateInvoice);
+				// 1. Calculate 2.5% tax
+				decimal taxRate = 0.025m;
+				decimal taxAmount = subtotal * taxRate;
 
-				// 2. Insert Independent Sale Records & Deduct Stock for Each Product
+				// 2. Grand total = subtotal + tax - discount
+				decimal grandTotal = (subtotal + taxAmount) - discount;
+
+				decimal totalProfit = 0;
+
+				// 3. Process each item in the cart, calculate individual item profit, and update stock
 				foreach (DataGridViewRow row in dgvCart.Rows)
 				{
 					string productId = row.Cells["colProductID"].Value.ToString();
-					string price = row.Cells["colPrice"].Value.ToString();
-					string qty = row.Cells["colQuantity"].Value.ToString();
-					string lineTotal = row.Cells["colSubtotal"].Value.ToString();
+					decimal price = Convert.ToDecimal(row.Cells["colPrice"].Value);
+					decimal qty = Convert.ToDecimal(row.Cells["colQuantity"].Value);
+					decimal lineTotal = Convert.ToDecimal(row.Cells["colSubtotal"].Value);
 					string product_name = row.Cells["colProductName"].Value.ToString();
 
-					string insertsale = $"INSERT INTO tblSale (invoice_id, product_id,product_name, quantity, unit_price, total_price, date,deleted) " +
-										$"VALUES ({currentInvoiceId}, {productId},'{product_name}', {qty}, {price}, {lineTotal}, '{saleDate}',0)";
+					// Fetch unitcost from tblProduct for this item
+					decimal unitCost = 0;
+					object costObj = db.ExecuteScalar($"SELECT unitcost FROM tblProduct WHERE product_id = {productId}");
+					if (costObj != null && costObj != DBNull.Value)
+					{
+						unitCost = Convert.ToDecimal(costObj);
+					}
+
+					// Calculate line profit: (Cart Unit Price - Product Unit Cost) * Quantity
+					decimal lineProfit = (price - unitCost) * qty;
+					totalProfit += lineProfit;
+
+					// Insert sale record
+					string insertsale = $"INSERT INTO tblSale (invoice_id, product_id, product_name, quantity, unit_price, total_price, date, deleted) " +
+										$"VALUES ({currentInvoiceId}, {productId}, '{product_name}', {qty}, {price}, {lineTotal}, '{saleDate}', 0)";
 					db.ExecuteQueries(insertsale);
 
+					// Deduct stock
 					string updateStock = $"UPDATE tblProduct SET quantity = quantity - {qty} WHERE product_id = {productId}";
 					db.ExecuteQueries(updateStock);
 				}
 
-				// 3. Insert Payment Record (Including customer_id as required by your table constraint)
+				// 4. Deduct the discount from the total accumulated profit
+				totalProfit -= discount;
+
+				// 5. Update the Invoice with tax, grand total, and profit
+				string updateInvoice = $"UPDATE tblInvoice SET " +
+									 $"invoice_date = '{saleDate}', " +
+									 $"subtotal = {subtotal}, " +
+									 $"tax = {taxAmount}, " +
+									 $"discount = {discount}, " +
+									 $"grand_total = {grandTotal}, " +
+									 $"total_profit = {totalProfit}, " +
+									 $"customer_name = '{txtCustomer_name.Text}', " +
+									 $"status = 'Paid' " +
+									 $"WHERE invoice_id = {currentInvoiceId}";
+				db.ExecuteQueries(updateInvoice);
+
+				// 6. Insert Payment Record
 				string insertPayment = $"INSERT INTO tblPayment (invoice_id, amount_paid, payment_date, payment_method) " +
-									   $"VALUES ({currentInvoiceId}, {grandTotal}, '{saleDate}', '{paymentMethod}')";
+									 $"VALUES ({currentInvoiceId}, {grandTotal}, '{saleDate}', '{paymentMethod}')";
 				db.ExecuteQueries(insertPayment);
 
 				isSaleCompleted = true;
 				MessageBox.Show("Sale completed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-				// Trigger Print Preview
-				// 4. Safe Print Execution Block
+				// 7. Safe Print Execution Block
 				try
 				{
-					// Use PrintDialog to let the user select a valid printer and avoid default printer crashes
 					PrintDialog printDialog = new PrintDialog();
 					printDialog.Document = printDocument1;
 
@@ -316,7 +333,6 @@ namespace key_luxery1
 						}
 					}
 				}
-
 				catch (Exception printEx)
 				{
 					MessageBox.Show("Sale saved successfully, but printing failed due to printer settings: " + printEx.Message,
@@ -352,7 +368,7 @@ namespace key_luxery1
 			g.DrawString($"Invoice No: {txtInvoiceNo.Text}", regularFont, brush, startX, startY + offset);
 			g.DrawString($"Date: {dtpSaleDate.Value.ToShortDateString()}", regularFont, brush, startX + 300, startY + offset);
 			offset += 25;
-			g.DrawString($"Customer: {cmbCustomer.Text}", regularFont, brush, startX, startY + offset);
+			g.DrawString($"Customer: {txtCustomer_name.Text}", regularFont, brush, startX, startY + offset);
 			g.DrawString($"Payment: {cmbPaymentMethod.Text}", regularFont, brush, startX + 300, startY + offset);
 			offset += 30;
 
@@ -402,6 +418,12 @@ namespace key_luxery1
 
 		private void btnCancel_Click(object sender, EventArgs e)
 		{
+			//update the invoice into draft or canceled
+			string cancelInvoice = $"UPDATE tblInvoice SET " +
+									   $"status = 'Canceled' " +
+									   $"WHERE invoice_id = {currentInvoiceId}";
+			db.ExecuteQueries(cancelInvoice);
+			MessageBox.Show("Sale canceled. Draft invoice has been marked as Canceled.", "Canceled", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			this.Close();
 		}
 
@@ -422,9 +444,5 @@ namespace key_luxery1
 			}
 		}
 
-		private void cmbCustomer_SelectedIndexChanged(object sender, EventArgs e)
-		{
-
-		}
 	}
 }

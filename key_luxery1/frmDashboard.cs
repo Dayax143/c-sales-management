@@ -47,13 +47,12 @@ namespace key_luxery1
 			PnlSetting.Visible = false;
 			pnlReport.Visible = false;
 			PnlAbout.Visible = false;
-			pnlProducts.Visible = false;
 
 			// Top menu indicators
 			pnlSale.Visible = false;
 			pnlInvoice.Visible = false;
 			pnlPayment.Visible = false;
-			pnlInvoice.Visible = false;
+			pnlProducts.Visible = false;
 		}
 
 		private void BtnDashboard_Click(object sender, EventArgs e)
@@ -103,7 +102,7 @@ namespace key_luxery1
 		private void btnPlates_Click(object sender, EventArgs e) // Products button
 		{
 			HideAllIndicators();
-			pnlInvoice.Visible = true;
+			pnlProducts.Visible = true;
 			ShowControl(uProducts1);
 		}
 
@@ -145,6 +144,11 @@ namespace key_luxery1
 				// login.Show();
 				this.Close();
 			}
+		}
+
+		private void frmDashboard_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			Application.Exit();
 		}
 	}
 }

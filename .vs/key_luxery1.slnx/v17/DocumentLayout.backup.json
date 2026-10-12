@@ -1,7 +1,24 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Software Development\\ABDI\\key_luxery1.6\\",
-  "Documents": [],
+  "WorkspaceRootPath": "D:\\Software Development\\ABDI\\key_luxery1.7 - removed customer and added invoice manage\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|d:\\software development\\abdi\\key_luxery1.7 - removed customer and added invoice manage\\key_luxery1\\frmdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|d:\\software development\\abdi\\key_luxery1.7 - removed customer and added invoice manage\\key_luxery1\\frmdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|d:\\software development\\abdi\\key_luxery1.7 - removed customer and added invoice manage\\key_luxery1\\frmmanagesale.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmmanagesale.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|d:\\software development\\abdi\\key_luxery1.7 - removed customer and added invoice manage\\key_luxery1\\frmmanagesale.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmmanagesale.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,15 +26,61 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "frmDashboard.cs",
+              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery1.7 - removed customer and added invoice manage\\key_luxery1\\frmDashboard.cs",
+              "RelativeDocumentMoniker": "key_luxery1\\frmDashboard.cs",
+              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery1.7 - removed customer and added invoice manage\\key_luxery1\\frmDashboard.cs",
+              "RelativeToolTip": "key_luxery1\\frmDashboard.cs",
+              "ViewState": "AgIAAIgAAAAAAAAAAAA1wJYAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-12T10:41:40.05Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frmDashboard.cs [Design]",
+              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery1.7 - removed customer and added invoice manage\\key_luxery1\\frmDashboard.cs",
+              "RelativeDocumentMoniker": "key_luxery1\\frmDashboard.cs",
+              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery1.7 - removed customer and added invoice manage\\key_luxery1\\frmDashboard.cs [Design]",
+              "RelativeToolTip": "key_luxery1\\frmDashboard.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-12T10:41:35.734Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "frmManageSale.cs",
+              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery1.7 - removed customer and added invoice manage\\key_luxery1\\frmManageSale.cs",
+              "RelativeDocumentMoniker": "key_luxery1\\frmManageSale.cs",
+              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery1.7 - removed customer and added invoice manage\\key_luxery1\\frmManageSale.cs",
+              "RelativeToolTip": "key_luxery1\\frmManageSale.cs",
+              "ViewState": "AgIAAEABAAAAAAAAAAAUwEgBAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-12T10:36:26.697Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "frmManageSale.cs [Design]",
+              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery1.7 - removed customer and added invoice manage\\key_luxery1\\frmManageSale.cs",
+              "RelativeDocumentMoniker": "key_luxery1\\frmManageSale.cs",
+              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery1.7 - removed customer and added invoice manage\\key_luxery1\\frmManageSale.cs [Design]",
+              "RelativeToolTip": "key_luxery1\\frmManageSale.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-12T10:36:23.531Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }

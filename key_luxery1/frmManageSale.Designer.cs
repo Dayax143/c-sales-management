@@ -26,10 +26,7 @@
 			this.txtInvoiceId = new System.Windows.Forms.TextBox();
 			this.lblInvoiceNo = new System.Windows.Forms.Label();
 			this.txtInvoiceNo = new System.Windows.Forms.TextBox();
-			this.lblCustomerPhone = new System.Windows.Forms.Label();
-			this.txtCustomerPhone = new System.Windows.Forms.TextBox();
 			this.lblCustomer = new System.Windows.Forms.Label();
-			this.cmbCustomer = new System.Windows.Forms.ComboBox();
 			this.lblSaleDate = new System.Windows.Forms.Label();
 			this.dtpSaleDate = new System.Windows.Forms.DateTimePicker();
 			this.grpItemSelection = new System.Windows.Forms.GroupBox();
@@ -60,6 +57,7 @@
 			this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
 			this.txtcustomer_id = new System.Windows.Forms.TextBox();
 			this.txtProduct_name = new System.Windows.Forms.TextBox();
+			this.txtCustomer_name = new System.Windows.Forms.TextBox();
 			this.grpCustomerInfo.SuspendLayout();
 			this.grpItemSelection.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvCart)).BeginInit();
@@ -83,16 +81,14 @@
 			this.grpCustomerInfo.Controls.Add(this.txtInvoiceId);
 			this.grpCustomerInfo.Controls.Add(this.lblInvoiceNo);
 			this.grpCustomerInfo.Controls.Add(this.txtInvoiceNo);
-			this.grpCustomerInfo.Controls.Add(this.lblCustomerPhone);
-			this.grpCustomerInfo.Controls.Add(this.txtCustomerPhone);
+			this.grpCustomerInfo.Controls.Add(this.txtCustomer_name);
 			this.grpCustomerInfo.Controls.Add(this.lblCustomer);
-			this.grpCustomerInfo.Controls.Add(this.cmbCustomer);
 			this.grpCustomerInfo.Controls.Add(this.lblSaleDate);
 			this.grpCustomerInfo.Controls.Add(this.dtpSaleDate);
 			this.grpCustomerInfo.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
 			this.grpCustomerInfo.Location = new System.Drawing.Point(25, 65);
 			this.grpCustomerInfo.Name = "grpCustomerInfo";
-			this.grpCustomerInfo.Size = new System.Drawing.Size(430, 225);
+			this.grpCustomerInfo.Size = new System.Drawing.Size(430, 210);
 			this.grpCustomerInfo.TabIndex = 1;
 			this.grpCustomerInfo.TabStop = false;
 			this.grpCustomerInfo.Text = "Invoice & Customer Information";
@@ -135,50 +131,21 @@
 			this.txtInvoiceNo.Size = new System.Drawing.Size(255, 29);
 			this.txtInvoiceNo.TabIndex = 1;
 			// 
-			// lblCustomerPhone
-			// 
-			this.lblCustomerPhone.AutoSize = true;
-			this.lblCustomerPhone.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.lblCustomerPhone.Location = new System.Drawing.Point(20, 106);
-			this.lblCustomerPhone.Name = "lblCustomerPhone";
-			this.lblCustomerPhone.Size = new System.Drawing.Size(99, 21);
-			this.lblCustomerPhone.TabIndex = 0;
-			this.lblCustomerPhone.Text = "Cust. Phone :";
-			// 
-			// txtCustomerPhone
-			// 
-			this.txtCustomerPhone.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.txtCustomerPhone.Location = new System.Drawing.Point(145, 103);
-			this.txtCustomerPhone.Name = "txtCustomerPhone";
-			this.txtCustomerPhone.Size = new System.Drawing.Size(255, 29);
-			this.txtCustomerPhone.TabIndex = 2;
-			this.txtCustomerPhone.TextChanged += new System.EventHandler(this.txtCustomerPhone_TextChanged);
-			// 
 			// lblCustomer
 			// 
 			this.lblCustomer.AutoSize = true;
 			this.lblCustomer.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.lblCustomer.Location = new System.Drawing.Point(20, 144);
+			this.lblCustomer.Location = new System.Drawing.Point(20, 117);
 			this.lblCustomer.Name = "lblCustomer";
 			this.lblCustomer.Size = new System.Drawing.Size(85, 21);
 			this.lblCustomer.TabIndex = 0;
 			this.lblCustomer.Text = "Customer :";
 			// 
-			// cmbCustomer
-			// 
-			this.cmbCustomer.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.cmbCustomer.FormattingEnabled = true;
-			this.cmbCustomer.Location = new System.Drawing.Point(145, 141);
-			this.cmbCustomer.Name = "cmbCustomer";
-			this.cmbCustomer.Size = new System.Drawing.Size(255, 29);
-			this.cmbCustomer.TabIndex = 3;
-			this.cmbCustomer.SelectedIndexChanged += new System.EventHandler(this.cmbCustomer_SelectedIndexChanged);
-			// 
 			// lblSaleDate
 			// 
 			this.lblSaleDate.AutoSize = true;
 			this.lblSaleDate.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.lblSaleDate.Location = new System.Drawing.Point(20, 182);
+			this.lblSaleDate.Location = new System.Drawing.Point(20, 156);
 			this.lblSaleDate.Name = "lblSaleDate";
 			this.lblSaleDate.Size = new System.Drawing.Size(82, 21);
 			this.lblSaleDate.TabIndex = 0;
@@ -188,7 +155,7 @@
 			// 
 			this.dtpSaleDate.Font = new System.Drawing.Font("Segoe UI", 9.5F);
 			this.dtpSaleDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-			this.dtpSaleDate.Location = new System.Drawing.Point(145, 179);
+			this.dtpSaleDate.Location = new System.Drawing.Point(145, 153);
 			this.dtpSaleDate.Name = "dtpSaleDate";
 			this.dtpSaleDate.Size = new System.Drawing.Size(255, 29);
 			this.dtpSaleDate.TabIndex = 4;
@@ -202,7 +169,7 @@
 			this.grpItemSelection.Controls.Add(this.txtQuantity);
 			this.grpItemSelection.Controls.Add(this.btnAddItem);
 			this.grpItemSelection.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-			this.grpItemSelection.Location = new System.Drawing.Point(25, 305);
+			this.grpItemSelection.Location = new System.Drawing.Point(25, 291);
 			this.grpItemSelection.Name = "grpItemSelection";
 			this.grpItemSelection.Size = new System.Drawing.Size(430, 130);
 			this.grpItemSelection.TabIndex = 2;
@@ -383,9 +350,9 @@
 			// txtDiscount
 			// 
 			this.txtDiscount.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.txtDiscount.Location = new System.Drawing.Point(145, 32);
+			this.txtDiscount.Location = new System.Drawing.Point(151, 32);
 			this.txtDiscount.Name = "txtDiscount";
-			this.txtDiscount.Size = new System.Drawing.Size(255, 29);
+			this.txtDiscount.Size = new System.Drawing.Size(249, 29);
 			this.txtDiscount.TabIndex = 0;
 			this.txtDiscount.Text = "0";
 			this.txtDiscount.TextChanged += new System.EventHandler(this.txtDiscount_TextChanged);
@@ -409,9 +376,9 @@
             "Credit Card",
             "Bank Transfer",
             "Store Credit"});
-			this.cmbPaymentMethod.Location = new System.Drawing.Point(145, 72);
+			this.cmbPaymentMethod.Location = new System.Drawing.Point(151, 72);
 			this.cmbPaymentMethod.Name = "cmbPaymentMethod";
-			this.cmbPaymentMethod.Size = new System.Drawing.Size(255, 29);
+			this.cmbPaymentMethod.Size = new System.Drawing.Size(249, 29);
 			this.cmbPaymentMethod.TabIndex = 1;
 			this.cmbPaymentMethod.Text = "Cash";
 			// 
@@ -530,6 +497,15 @@
 			this.txtProduct_name.TabIndex = 0;
 			this.txtProduct_name.Visible = false;
 			// 
+			// txtCustomer_name
+			// 
+			this.txtCustomer_name.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+			this.txtCustomer_name.Location = new System.Drawing.Point(145, 109);
+			this.txtCustomer_name.Name = "txtCustomer_name";
+			this.txtCustomer_name.Size = new System.Drawing.Size(255, 29);
+			this.txtCustomer_name.TabIndex = 2;
+			this.txtCustomer_name.TextChanged += new System.EventHandler(this.txtCustomerPhone_TextChanged);
+			// 
 			// frmManageSale
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -573,10 +549,7 @@
 		public System.Windows.Forms.TextBox txtInvoiceId;
 		private System.Windows.Forms.Label lblInvoiceNo;
 		public System.Windows.Forms.TextBox txtInvoiceNo;
-		private System.Windows.Forms.Label lblCustomerPhone;
-		public System.Windows.Forms.TextBox txtCustomerPhone;
 		private System.Windows.Forms.Label lblCustomer;
-		public System.Windows.Forms.ComboBox cmbCustomer;
 		private System.Windows.Forms.Label lblSaleDate;
 		public System.Windows.Forms.DateTimePicker dtpSaleDate;
 		private System.Windows.Forms.GroupBox grpItemSelection;
@@ -607,5 +580,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn colSubtotal;
 		public System.Windows.Forms.TextBox txtcustomer_id;
 		public System.Windows.Forms.TextBox txtProduct_name;
+		public System.Windows.Forms.TextBox txtCustomer_name;
 	}
 }

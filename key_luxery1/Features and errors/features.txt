@@ -1,0 +1,7 @@
+add payment reference number
+
+add invoice double click and enter the invoice bill and reference number
+
+print the existing invoice bill
+
+just add the customer name
