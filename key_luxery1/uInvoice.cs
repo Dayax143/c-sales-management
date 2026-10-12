@@ -33,7 +33,7 @@ namespace key_luxery1
                                         grand_total AS [Grand Total ($)], 
                                         total_profit AS [Profit ($)], 
                                         status AS [Status] 
-                                 FROM tblInvoice where status != 'Draft'
+                                 FROM tblInvoice WHERE (deleted = 0 OR deleted IS NULL)  and status != 'Draft' and status !='Canceled'
                                  ORDER BY invoice_id DESC";
 
 				DataTable dt = sharedClass.GetData(query);
@@ -61,8 +61,8 @@ namespace key_luxery1
                                         grand_total AS [Grand Total ($)], 
                                         total_profit AS [Profit ($)], 
                                         status AS [Status] 
-                                 FROM tblInvoice WHERE deleted = 0 OR deleted IS NULL 
-                                   AND status != 'Draft' 
+                                 FROM tblInvoice WHERE (deleted = 0 OR deleted IS NULL) 
+                                   AND (status != 'Draft' and status !='Canceled')
                                    AND invoice_no LIKE '%{keyword}%'
                                  ORDER BY invoice_id DESC";
 
@@ -100,7 +100,7 @@ namespace key_luxery1
 				LoadInvoiceData();
 			}
 		}
-
+		
 		private void btnManageInvoice_Click(object sender, EventArgs e)
 		{
 			frmManageInvoice frmManageInvoice = new frmManageInvoice();

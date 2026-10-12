@@ -26,21 +26,20 @@ namespace key_luxery1
 		{
 			try
 			{
-				string query = @"SELECT i.invoice_id AS [ID], 
-                                        i.invoice_no AS [Invoice No], 
-                                        c.customer_name AS [Customer Name], 
-                                        i.invoice_date AS [Invoice Date], 
-                                        i.due_date AS [Due Date],
-                                        i.subtotal AS [Subtotal ($)], 
-                                        i.discount AS [Discount ($)], 
-                                        i.tax AS [Tax ($)], 
-                                        i.grand_total AS [Grand Total ($)], 
-                                        i.total_profit AS [Profit ($)], 
-                                        i.status AS [Status] 
-                                 FROM tblInvoice i
-                                 LEFT JOIN tblCustomer c ON i.customer_id = c.customer_id
-                                 WHERE (i.deleted = 0 OR i.deleted IS NULL) AND i.status != 'Draft'
-                                 ORDER BY i.invoice_id DESC";
+				string query = @"SELECT invoice_id AS [ID], 
+                                        invoice_no AS [Invoice No], 
+                                        customer_name AS [Customer Name], 
+                                        invoice_date AS [Invoice Date], 
+                                        due_date AS [Due Date],
+                                        subtotal AS [Subtotal ($)], 
+                                        discount AS [Discount ($)], 
+                                        tax AS [Tax ($)], 
+                                        grand_total AS [Grand Total ($)], 
+                                        total_profit AS [Profit ($)], 
+                                        status AS [Status] 
+                                 FROM tblInvoice tblCustomer 
+                                 WHERE (deleted = 0 OR deleted IS NULL) AND (status != 'Canceled' and status !='Draft')
+                                 ORDER BY invoice_id DESC";
 
 				DataTable dt = sharedClass.GetData(query);
 				dgvInvoices.DataSource = dt;
@@ -57,23 +56,22 @@ namespace key_luxery1
 			string keyword = txtSearchInvoiceNo.Text.Trim();
 			try
 			{
-				string query = $@"SELECT i.invoice_id AS [ID], 
-                                        i.invoice_no AS [Invoice No], 
-                                        c.customer_name AS [Customer Name], 
-                                        i.invoice_date AS [Invoice Date], 
-                                        i.due_date AS [Due Date],
-                                        i.subtotal AS [Subtotal ($)], 
-                                        i.discount AS [Discount ($)], 
-                                        i.tax AS [Tax ($)], 
-                                        i.grand_total AS [Grand Total ($)], 
-                                        i.total_profit AS [Profit ($)], 
-                                        i.status AS [Status] 
-                                 FROM tblInvoice i
-                                 LEFT JOIN tblCustomer c ON i.customer_id = c.customer_id
-                                 WHERE (i.deleted = 0 OR i.deleted IS NULL) 
-                                   AND i.status != 'Draft' 
-                                   AND i.invoice_no LIKE '%{keyword}%'
-                                 ORDER BY i.invoice_id DESC";
+				string query = $@"SELECT invoice_id AS [ID], 
+                                        invoice_no AS [Invoice No], 
+                                        customer_name AS [Customer Name], 
+                                        invoice_date AS [Invoice Date], 
+                                        due_date AS [Due Date],
+                                        subtotal AS [Subtotal ($)], 
+                                        discount AS [Discount ($)], 
+                                        tax AS [Tax ($)], 
+                                        grand_total AS [Grand Total ($)], 
+                                        total_profit AS [Profit ($)], 
+                                        status AS [Status] 
+                                 FROM tblInvoice tblCustomer 
+                                 WHERE (deleted = 0 OR deleted IS NULL) 
+                                   AND (status != 'Draft' and status !='Canceled')
+                                   AND invoice_no LIKE '%{keyword}%'
+                                 ORDER BY invoice_id DESC";
 
 				DataTable dt = sharedClass.GetData(query);
 				dgvInvoices.DataSource = dt;
@@ -169,10 +167,8 @@ namespace key_luxery1
 			int offset = 40;
 
 			// Fetch record matching tblInvoice schema columns
-			string invoiceQuery = $@"SELECT i.invoice_id, i.invoice_no, i.subtotal, i.discount, i.tax, i.grand_total, i.invoice_date, c.customer_name 
-                                     FROM tblInvoice i 
-                                     LEFT JOIN tblCustomer c ON i.customer_id = c.customer_id 
-                                     WHERE i.invoice_no = '{selectedInvoiceNoForPrint}'";
+			string invoiceQuery = $@"SELECT invoice_id, invoice_no, subtotal, discount, tax, grand_total, invoice_date, customer_name 
+                                     FROM tblInvoice WHERE invoice_no = '{selectedInvoiceNoForPrint}'";
 			DataTable dtInvoice = sharedClass.GetData(invoiceQuery);
 
 			if (dtInvoice.Rows.Count == 0) return;

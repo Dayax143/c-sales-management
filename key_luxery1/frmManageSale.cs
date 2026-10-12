@@ -231,6 +231,8 @@ namespace key_luxery1
 
 			lblGrandTotalValue.Text = $"${grandTotal:N2}";
 		}
+
+
 		// --- 3. COMPLETE SALE & FINALISE DRAFT INVOICE ---
 		private void btnCompleteSale_Click(object sender, EventArgs e)
 		{
@@ -254,7 +256,7 @@ namespace key_luxery1
 				decimal discount = 0;
 				decimal.TryParse(txtDiscount.Text.Trim(), out discount);
 
-				// 1. Calculate 2.5% tax
+				// 1. Calculate 2.5% tax for the entire invoice
 				decimal taxRate = 0.025m;
 				decimal taxAmount = subtotal * taxRate;
 
@@ -263,7 +265,7 @@ namespace key_luxery1
 
 				decimal totalProfit = 0;
 
-				// 3. Process each item in the cart, calculate individual item profit, and update stock
+				// 3. Process each item in the cart, calculate item tax, item profit, and update stock
 				foreach (DataGridViewRow row in dgvCart.Rows)
 				{
 					string productId = row.Cells["colProductID"].Value.ToString();
@@ -271,6 +273,9 @@ namespace key_luxery1
 					decimal qty = Convert.ToDecimal(row.Cells["colQuantity"].Value);
 					decimal lineTotal = Convert.ToDecimal(row.Cells["colSubtotal"].Value);
 					string product_name = row.Cells["colProductName"].Value.ToString();
+
+					// Calculate 2.5% tax for this specific line item
+					decimal lineTax = lineTotal * taxRate;
 
 					// Fetch unitcost from tblProduct for this item
 					decimal unitCost = 0;
@@ -284,7 +289,7 @@ namespace key_luxery1
 					decimal lineProfit = (price - unitCost) * qty;
 					totalProfit += lineProfit;
 
-					// Insert sale record
+					// Insert sale record including the item tax column
 					string insertsale = $"INSERT INTO tblSale (invoice_id, product_id, product_name, quantity, unit_price, total_price, date, deleted) " +
 										$"VALUES ({currentInvoiceId}, {productId}, '{product_name}', {qty}, {price}, {lineTotal}, '{saleDate}', 0)";
 					db.ExecuteQueries(insertsale);
@@ -346,7 +351,6 @@ namespace key_luxery1
 				MessageBox.Show("Error completing sale: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
-
 		// --- 4. PRINT INVOICE LAYOUT ---
 		private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
 		{
