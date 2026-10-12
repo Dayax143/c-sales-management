@@ -1,0 +1,60 @@
+-- 1. Customers Table
+CREATE TABLE tblCustomer (
+    customer_id INT IDENTITY(1,1) PRIMARY KEY,
+    customer_name VARCHAR(100) NOT NULL,
+    customer_phone VARCHAR(20), -- VARCHAR is safer than numeric for handling phone formats/country codes
+    customer_address VARCHAR(255),
+    status VARCHAR(20) DEFAULT 'Active',
+    is_deleted BIT DEFAULT 0, -- Soft delete flag
+    created_at DATETIME DEFAULT GETDATE()
+);
+
+-- 2. Products Table
+CREATE TABLE tblProduct (
+    product_id INT IDENTITY(1,1) PRIMARY KEY,
+    product_name VARCHAR(100) NOT NULL,
+    category VARCHAR(50),
+    quantity INT CHECK (quantity >= 0), -- Prevents negative stock
+    unit_cost DECIMAL(18, 2) CHECK (unit_cost >= 0),
+    price DECIMAL(18, 2) CHECK (price >= 0),
+    deleted BIT DEFAULT 0,
+    created_at DATETIME DEFAULT GETDATE()
+);
+
+-- 3. Invoice Header Table (The Bill)
+CREATE TABLE tblInvoice (
+    invoice_id INT IDENTITY(1,1) PRIMARY KEY,
+    invoice_number VARCHAR(50) UNIQUE NOT NULL, -- e.g., INV-0001
+    customer_id INT FOREIGN KEY REFERENCES tblCustomer(customer_id),
+    invoice_date DATETIME DEFAULT GETDATE(),
+    due_date DATETIME,
+    subtotal DECIMAL(18, 2) NOT NULL,
+    tax_amount DECIMAL(18, 2) DEFAULT 0.00,
+    discount_amount DECIMAL(18, 2) DEFAULT 0.00,
+    total_amount DECIMAL(18, 2) NOT NULL, -- Final amount to pay
+    paid_amount DECIMAL(18, 2) DEFAULT 0.00, -- Tracks total payments received so far
+    status VARCHAR(20) DEFAULT 'Unpaid', -- 'Unpaid', 'Partial', 'Paid', 'Cancelled'
+    created_at DATETIME DEFAULT GETDATE()
+);
+
+-- 4. Sale Items Table (Products inside the Invoice)
+CREATE TABLE tblSaleItem (
+    sale_item_id INT IDENTITY(1,1) PRIMARY KEY,
+    invoice_id INT FOREIGN KEY REFERENCES tblInvoice(invoice_id) ON DELETE CASCADE,
+    product_id INT FOREIGN KEY REFERENCES tblProduct(product_id),
+    quantity INT CHECK (quantity > 0), -- Must buy at least 1
+    unit_price DECIMAL(18, 2) NOT NULL, -- Locked-in price at time of sale
+    discount_item DECIMAL(18, 2) DEFAULT 0.00,
+    total_price DECIMAL(18, 2) NOT NULL -- (quantity * unit_price) - discount
+);
+
+-- 5. Payments Table (Transaction tracking for invoices)
+CREATE TABLE tblPayment (
+    payment_id INT IDENTITY(1,1) PRIMARY KEY,
+    invoice_id INT FOREIGN KEY REFERENCES tblInvoice(invoice_id),
+    amount_paid DECIMAL(18, 2) CHECK (amount_paid > 0),
+    payment_date DATETIME DEFAULT GETDATE(),
+    payment_method VARCHAR(30) DEFAULT 'Cash', -- 'Cash', 'Credit Card', 'Bank Transfer', 'Mobile Money'
+    reference_number VARCHAR(50) NULL, -- Transaction ID or receipt code if paid via card/bank
+    received_by VARCHAR(50) NULL -- Staff member who processed the payment
+);

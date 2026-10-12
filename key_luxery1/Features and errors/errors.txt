@@ -1,0 +1,14 @@
+invalid column name 'invoice_id',
+invalid column name 'reference_no',
+
+converting the varchar value 'no' to data type int
+converting the varchar value 'no' to data type int
+converting the varchar value 'no' to data type int
+
+when creating product
+
+
+
+converting the varchar value 'no' to data type int
+converting the varchar value 'no' to data type int
+converting the varchar value 'no' to data type int

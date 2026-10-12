@@ -1,0 +1,69 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\pc\\source\\repos\\key_luxery1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|c:\\users\\pc\\source\\repos\\key_luxery1\\key_luxery1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|c:\\users\\pc\\source\\repos\\key_luxery1\\key_luxery1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|c:\\users\\pc\\source\\repos\\key_luxery1\\key_luxery1\\usales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\usales.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "C:\\Users\\pc\\source\\repos\\key_luxery1\\key_luxery1\\Form1.cs",
+              "RelativeDocumentMoniker": "key_luxery1\\Form1.cs",
+              "ToolTip": "C:\\Users\\pc\\source\\repos\\key_luxery1\\key_luxery1\\Form1.cs",
+              "RelativeToolTip": "key_luxery1\\Form1.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAADgvxUAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-08T07:11:28.146Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "uSales.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\pc\\source\\repos\\key_luxery1\\key_luxery1\\uSales.cs",
+              "RelativeDocumentMoniker": "key_luxery1\\uSales.cs",
+              "ToolTip": "C:\\Users\\pc\\source\\repos\\key_luxery1\\key_luxery1\\uSales.cs [Design]",
+              "RelativeToolTip": "key_luxery1\\uSales.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-08T07:10:37.932Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\pc\\source\\repos\\key_luxery1\\key_luxery1\\Form1.cs",
+              "RelativeDocumentMoniker": "key_luxery1\\Form1.cs",
+              "ToolTip": "C:\\Users\\pc\\source\\repos\\key_luxery1\\key_luxery1\\Form1.cs [Design]",
+              "RelativeToolTip": "key_luxery1\\Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-08T07:02:31.094Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
