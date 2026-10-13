@@ -21,10 +21,10 @@
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.dgvInvoices = new System.Windows.Forms.DataGridView();
 			this.panel1 = new System.Windows.Forms.Panel();
+			this.btnManageInvoice = new System.Windows.Forms.Button();
 			this.btnRefresh = new System.Windows.Forms.Button();
 			this.txtSearchInvoice = new System.Windows.Forms.TextBox();
 			this.lblSearch = new System.Windows.Forms.Label();
-			this.btnManageInvoice = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dgvInvoices)).BeginInit();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
@@ -79,6 +79,21 @@
 			this.panel1.Size = new System.Drawing.Size(1014, 100);
 			this.panel1.TabIndex = 4;
 			// 
+			// btnManageInvoice
+			// 
+			this.btnManageInvoice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+			this.btnManageInvoice.FlatAppearance.BorderSize = 0;
+			this.btnManageInvoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnManageInvoice.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+			this.btnManageInvoice.ForeColor = System.Drawing.Color.White;
+			this.btnManageInvoice.Location = new System.Drawing.Point(904, 39);
+			this.btnManageInvoice.Name = "btnManageInvoice";
+			this.btnManageInvoice.Size = new System.Drawing.Size(100, 31);
+			this.btnManageInvoice.TabIndex = 6;
+			this.btnManageInvoice.Text = "Manage";
+			this.btnManageInvoice.UseVisualStyleBackColor = false;
+			this.btnManageInvoice.Click += new System.EventHandler(this.btnManageInvoice_Click);
+			// 
 			// btnRefresh
 			// 
 			this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
@@ -86,7 +101,7 @@
 			this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnRefresh.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
 			this.btnRefresh.ForeColor = System.Drawing.Color.White;
-			this.btnRefresh.Location = new System.Drawing.Point(611, 35);
+			this.btnRefresh.Location = new System.Drawing.Point(779, 38);
 			this.btnRefresh.Name = "btnRefresh";
 			this.btnRefresh.Size = new System.Drawing.Size(100, 31);
 			this.btnRefresh.TabIndex = 6;
@@ -97,7 +112,7 @@
 			// txtSearchInvoice
 			// 
 			this.txtSearchInvoice.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.txtSearchInvoice.Location = new System.Drawing.Point(346, 36);
+			this.txtSearchInvoice.Location = new System.Drawing.Point(514, 39);
 			this.txtSearchInvoice.Name = "txtSearchInvoice";
 			this.txtSearchInvoice.Size = new System.Drawing.Size(250, 29);
 			this.txtSearchInvoice.TabIndex = 5;
@@ -106,26 +121,11 @@
 			// 
 			this.lblSearch.AutoSize = true;
 			this.lblSearch.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
-			this.lblSearch.Location = new System.Drawing.Point(211, 39);
+			this.lblSearch.Location = new System.Drawing.Point(379, 42);
 			this.lblSearch.Name = "lblSearch";
 			this.lblSearch.Size = new System.Drawing.Size(129, 21);
 			this.lblSearch.TabIndex = 4;
 			this.lblSearch.Text = "Search Invoice :";
-			// 
-			// btnManageInvoice
-			// 
-			this.btnManageInvoice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-			this.btnManageInvoice.FlatAppearance.BorderSize = 0;
-			this.btnManageInvoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnManageInvoice.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-			this.btnManageInvoice.ForeColor = System.Drawing.Color.White;
-			this.btnManageInvoice.Location = new System.Drawing.Point(736, 36);
-			this.btnManageInvoice.Name = "btnManageInvoice";
-			this.btnManageInvoice.Size = new System.Drawing.Size(100, 31);
-			this.btnManageInvoice.TabIndex = 6;
-			this.btnManageInvoice.Text = "Manage";
-			this.btnManageInvoice.UseVisualStyleBackColor = false;
-			this.btnManageInvoice.Click += new System.EventHandler(this.btnManageInvoice_Click);
 			// 
 			// uInvoice
 			// 

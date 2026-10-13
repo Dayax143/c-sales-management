@@ -29,7 +29,7 @@ namespace key_luxery1
 				if (!string.IsNullOrEmpty(searchKeyword))
 				{
 					string safeKeyword = searchKeyword.Replace("'", "''");
-					query += $" AND (payment_id LIKE '%{safeKeyword}%' OR invoice_id LIKE '%{safeKeyword}%' OR customer_id LIKE '%{safeKeyword}%')";
+					query += $" AND (payment_id LIKE '%{safeKeyword}%' OR invoice_id LIKE '%{safeKeyword}%')";
 				}
 
 				if (!string.IsNullOrEmpty(paymentMethod) && paymentMethod != "All Methods")
@@ -141,6 +141,43 @@ namespace key_luxery1
 			catch (Exception ex)
 			{
 				MessageBox.Show("Error exporting data: " + ex.Message, "Export Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+
+		private void dgvPayments_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+		{
+			try
+			{
+				if (e.RowIndex >= 0)
+				{
+					DataGridViewRow row = dgvPayments.Rows[e.RowIndex];
+
+					//id AS[Invoice ID], amount_paid AS[Amount Paid], payment_method AS[Method], reference_no AS[Reference],
+					//	payment_date AS[Payment Date] FROM tblPayment WHERE 1 = 1";
+
+					// Extract values from the selected row (adjust column names if needed)
+					string invoiceId = row.Cells["Invoice ID"].Value.ToString();
+					string grandTotal = row.Cells["Amount Paid"].Value.ToString();
+					string reference = row.Cells["Reference"].Value.ToString();
+					string paymentMethod = row.Cells["method"].Value.ToString();
+					
+
+					// Pass the 3 required string arguments matching your constructor
+					frmManagePayment manageForm = new frmManagePayment(invoiceId, grandTotal, reference);
+
+					if (manageForm.ShowDialog() == DialogResult.OK)
+					{
+						manageForm.txtAmountPaid.Text = grandTotal;
+						manageForm.cmbPaymentMethod.Text = paymentMethod;
+
+						// Refresh your payments grid here if necessary
+						 //LoadPaymentsData();
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message);
 			}
 		}
 	}

@@ -24,7 +24,7 @@ namespace key_luxery1
 		{
 			try
 			{
-				string query = "SELECT sale_id AS [Sale ID], product_id AS [Product ID], product_name AS [Item Name], quantity AS [Qty], unit_price AS [Price], total_price AS [Net Total], profit AS [Profit], date AS [Sale Date], Invoice_id as [Invoice ID] FROM tblSale WHERE deleted = 0";
+				string query = "SELECT sale_id AS [Sale ID], product_id AS [Product ID], product_name AS [Item Name], quantity AS [Qty], unit_price AS [Price], total_price AS [Net Total], date AS [Sale Date], Invoice_id as [Invoice ID] FROM tblSale WHERE deleted = 0";
 
 				if (!string.IsNullOrEmpty(filterKeyword))
 				{

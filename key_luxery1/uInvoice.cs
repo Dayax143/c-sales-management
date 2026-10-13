@@ -99,8 +99,7 @@ namespace key_luxery1
 				// Refresh the invoice list after recording payment
 				LoadInvoiceData();
 			}
-		}
-		
+		}		
 		private void btnManageInvoice_Click(object sender, EventArgs e)
 		{
 			frmManageInvoice frmManageInvoice = new frmManageInvoice();

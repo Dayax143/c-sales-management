@@ -178,6 +178,7 @@
 			this.dgvPayments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dgvPayments.Size = new System.Drawing.Size(1219, 660);
 			this.dgvPayments.TabIndex = 1;
+			this.dgvPayments.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPayments_CellDoubleClick);
 			// 
 			// uPayments
 			// 
