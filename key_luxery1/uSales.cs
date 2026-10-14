@@ -29,7 +29,7 @@ namespace key_luxery1
 				if (!string.IsNullOrEmpty(filterKeyword))
 				{
 					string safeKeyword = filterKeyword.Replace("'", "''");
-					query += $" AND product_name LIKE '%{safeKeyword}%' OR sale_id LIKE '%{safeKeyword}%' OR customer_id LIKE '%{safeKeyword}%')";
+					query += $" AND product_name LIKE '%{safeKeyword}%' OR sale_id LIKE '%{safeKeyword}%'";
 				}
 
 				query += " ORDER BY date DESC";

@@ -69,8 +69,8 @@ namespace key_luxery1
 				string paymentMethod = cmbPaymentMethod.Text.Trim();
 
 				// 1. Insert into tblPayment table
-				string insertPaymentQuery = $"INSERT INTO tblPayment (invoice_id, customer_id, amount_paid, payment_date, payment_method) " +
-											$"VALUES ({targetInvoiceId}, {targetCustomerSql}, {amountPaid}, '{paymentDate}', '{paymentMethod}')";
+				string insertPaymentQuery = $"INSERT INTO tblPayment (invoice_id, amount_paid, payment_date, payment_method) " +
+											$"VALUES ({targetInvoiceId}, {amountPaid}, '{paymentDate}', '{paymentMethod}')";
 				db.ExecuteQueries(insertPaymentQuery);
 
 				// 2. Update Invoice status or paid amount if required
