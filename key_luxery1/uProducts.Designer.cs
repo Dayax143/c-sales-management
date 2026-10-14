@@ -28,19 +28,18 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.panelTopBar = new System.Windows.Forms.Panel();
 			this.btnExport = new System.Windows.Forms.Button();
 			this.btnRefresh = new System.Windows.Forms.Button();
-			this.btnManageProduct = new System.Windows.Forms.Button();
+			this.btnStock = new System.Windows.Forms.Button();
 			this.btnAddProduct = new System.Windows.Forms.Button();
 			this.lblSearch = new System.Windows.Forms.Label();
 			this.lblCategoryFilter = new System.Windows.Forms.Label();
 			this.txtSearchFilter = new System.Windows.Forms.TextBox();
 			this.cmbFilterCategory = new System.Windows.Forms.ComboBox();
 			this.dgvProducts = new System.Windows.Forms.DataGridView();
-			this.btnStock = new System.Windows.Forms.Button();
 			this.panelTopBar.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
 			this.SuspendLayout();
@@ -50,7 +49,6 @@
 			this.panelTopBar.BackColor = System.Drawing.Color.White;
 			this.panelTopBar.Controls.Add(this.btnExport);
 			this.panelTopBar.Controls.Add(this.btnRefresh);
-			this.panelTopBar.Controls.Add(this.btnManageProduct);
 			this.panelTopBar.Controls.Add(this.btnStock);
 			this.panelTopBar.Controls.Add(this.btnAddProduct);
 			this.panelTopBar.Controls.Add(this.lblSearch);
@@ -70,7 +68,7 @@
 			this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnExport.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
 			this.btnExport.ForeColor = System.Drawing.Color.White;
-			this.btnExport.Location = new System.Drawing.Point(375, 26);
+			this.btnExport.Location = new System.Drawing.Point(241, 26);
 			this.btnExport.Name = "btnExport";
 			this.btnExport.Size = new System.Drawing.Size(110, 35);
 			this.btnExport.TabIndex = 6;
@@ -85,7 +83,7 @@
 			this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnRefresh.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
 			this.btnRefresh.ForeColor = System.Drawing.Color.White;
-			this.btnRefresh.Location = new System.Drawing.Point(265, 26);
+			this.btnRefresh.Location = new System.Drawing.Point(131, 26);
 			this.btnRefresh.Name = "btnRefresh";
 			this.btnRefresh.Size = new System.Drawing.Size(100, 35);
 			this.btnRefresh.TabIndex = 6;
@@ -93,20 +91,20 @@
 			this.btnRefresh.UseVisualStyleBackColor = false;
 			this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
 			// 
-			// btnManageProduct
+			// btnStock
 			// 
-			this.btnManageProduct.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-			this.btnManageProduct.FlatAppearance.BorderSize = 0;
-			this.btnManageProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnManageProduct.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
-			this.btnManageProduct.ForeColor = System.Drawing.Color.White;
-			this.btnManageProduct.Location = new System.Drawing.Point(135, 26);
-			this.btnManageProduct.Name = "btnManageProduct";
-			this.btnManageProduct.Size = new System.Drawing.Size(120, 35);
-			this.btnManageProduct.TabIndex = 5;
-			this.btnManageProduct.Text = "Manage Item";
-			this.btnManageProduct.UseVisualStyleBackColor = false;
-			this.btnManageProduct.Click += new System.EventHandler(this.button1_Click);
+			this.btnStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+			this.btnStock.FlatAppearance.BorderSize = 0;
+			this.btnStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnStock.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+			this.btnStock.ForeColor = System.Drawing.Color.White;
+			this.btnStock.Location = new System.Drawing.Point(357, 26);
+			this.btnStock.Name = "btnStock";
+			this.btnStock.Size = new System.Drawing.Size(105, 35);
+			this.btnStock.TabIndex = 5;
+			this.btnStock.Text = "Stock";
+			this.btnStock.UseVisualStyleBackColor = false;
+			this.btnStock.Click += new System.EventHandler(this.btnStock_Click);
 			// 
 			// btnAddProduct
 			// 
@@ -175,23 +173,23 @@
 			this.dgvProducts.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.dgvProducts.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
 			this.dgvProducts.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-			dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
-			dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-			dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-			dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dgvProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+			dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this.dgvProducts.ColumnHeadersHeight = 40;
-			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-			dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.dgvProducts.DefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.dgvProducts.DefaultCellStyle = dataGridViewCellStyle2;
 			this.dgvProducts.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dgvProducts.EnableHeadersVisualStyles = false;
 			this.dgvProducts.Location = new System.Drawing.Point(0, 90);
@@ -203,21 +201,6 @@
 			this.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dgvProducts.Size = new System.Drawing.Size(1219, 674);
 			this.dgvProducts.TabIndex = 1;
-			// 
-			// btnStock
-			// 
-			this.btnStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-			this.btnStock.FlatAppearance.BorderSize = 0;
-			this.btnStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnStock.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
-			this.btnStock.ForeColor = System.Drawing.Color.White;
-			this.btnStock.Location = new System.Drawing.Point(491, 26);
-			this.btnStock.Name = "btnStock";
-			this.btnStock.Size = new System.Drawing.Size(105, 35);
-			this.btnStock.TabIndex = 5;
-			this.btnStock.Text = "Stock";
-			this.btnStock.UseVisualStyleBackColor = false;
-			this.btnStock.Click += new System.EventHandler(this.btnStock_Click);
 			// 
 			// uProducts
 			// 
@@ -244,7 +227,6 @@
 		public System.Windows.Forms.TextBox txtSearchFilter;
 		public System.Windows.Forms.ComboBox cmbFilterCategory;
 		private System.Windows.Forms.Button btnAddProduct;
-		private System.Windows.Forms.Button btnManageProduct;
 		private System.Windows.Forms.Button btnRefresh;
 		private System.Windows.Forms.Button btnExport;
 		private System.Windows.Forms.DataGridView dgvProducts;

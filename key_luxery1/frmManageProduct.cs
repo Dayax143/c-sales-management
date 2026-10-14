@@ -16,7 +16,7 @@ namespace key_luxery1
 		{
 			try
 			{
-				string query = $"INSERT INTO tblProduct (Product_Name, Category, quantity, UnitCost, Price,date, deleted) VALUES ('{txtProductName.Text.Trim()}', '{cmbCategory.Text.Trim()}', {txtStock.Text.Trim()}, {txtCost.Text.Trim()}, {txtPrice.Text.Trim()},{DateTime.Now}, 0)"; 
+				string query = $"INSERT INTO tblProduct (Product_Name, Category, quantity, UnitCost, Price,date,barcode, deleted) VALUES ('{txtProductName.Text.Trim()}', '{cmbCategory.Text.Trim()}', {txtStock.Text.Trim()}, {txtCost.Text.Trim()}, {txtPrice.Text.Trim()},{DateTime.Now},{txtBarcode.Text.Trim()}, 0)"; 
 				db.ExecuteQueries(query);
 				MessageBox.Show("Product saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				btnClean_Click(sender, e);

@@ -57,9 +57,9 @@ namespace key_luxery1
 
 		private void btnNewSale_Click(object sender, EventArgs e)
 		{
-			frmNewSale newSaleForm = new frmNewSale();
-			newSaleForm.ShowDialog();
-			LoadSalesData(); // Refresh grid after closing new sale form
+			frmManageSale manageSaleForm = new frmManageSale();
+			manageSaleForm.ShowDialog();
+			LoadSalesData(); // Refresh grid after closing manage sale form
 		}
 
 		private void btnManageSale_Click(object sender, EventArgs e)
