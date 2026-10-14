@@ -40,7 +40,9 @@
 			this.txtStock = new System.Windows.Forms.TextBox();
 			this.lblCost = new System.Windows.Forms.Label();
 			this.txtCost = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
 			this.lblPrice = new System.Windows.Forms.Label();
+			this.txtBarcode = new System.Windows.Forms.TextBox();
 			this.txtPrice = new System.Windows.Forms.TextBox();
 			this.btnSave = new System.Windows.Forms.Button();
 			this.btnUpdate = new System.Windows.Forms.Button();
@@ -72,12 +74,14 @@
 			this.grpProductDetails.Controls.Add(this.txtStock);
 			this.grpProductDetails.Controls.Add(this.lblCost);
 			this.grpProductDetails.Controls.Add(this.txtCost);
+			this.grpProductDetails.Controls.Add(this.label1);
 			this.grpProductDetails.Controls.Add(this.lblPrice);
+			this.grpProductDetails.Controls.Add(this.txtBarcode);
 			this.grpProductDetails.Controls.Add(this.txtPrice);
 			this.grpProductDetails.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
 			this.grpProductDetails.Location = new System.Drawing.Point(25, 70);
 			this.grpProductDetails.Name = "grpProductDetails";
-			this.grpProductDetails.Size = new System.Drawing.Size(535, 290);
+			this.grpProductDetails.Size = new System.Drawing.Size(535, 335);
 			this.grpProductDetails.TabIndex = 1;
 			this.grpProductDetails.TabStop = false;
 			this.grpProductDetails.Text = "Product Information";
@@ -173,6 +177,16 @@
 			this.txtCost.Size = new System.Drawing.Size(340, 29);
 			this.txtCost.TabIndex = 4;
 			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+			this.label1.Location = new System.Drawing.Point(25, 284);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(73, 21);
+			this.label1.TabIndex = 0;
+			this.label1.Text = "Barcode :";
+			// 
 			// lblPrice
 			// 
 			this.lblPrice.AutoSize = true;
@@ -182,6 +196,14 @@
 			this.lblPrice.Size = new System.Drawing.Size(84, 21);
 			this.lblPrice.TabIndex = 0;
 			this.lblPrice.Text = "Sale Price :";
+			// 
+			// txtBarcode
+			// 
+			this.txtBarcode.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+			this.txtBarcode.Location = new System.Drawing.Point(160, 281);
+			this.txtBarcode.Name = "txtBarcode";
+			this.txtBarcode.Size = new System.Drawing.Size(340, 29);
+			this.txtBarcode.TabIndex = 5;
 			// 
 			// txtPrice
 			// 
@@ -198,7 +220,7 @@
 			this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSave.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
 			this.btnSave.ForeColor = System.Drawing.Color.White;
-			this.btnSave.Location = new System.Drawing.Point(185, 380);
+			this.btnSave.Location = new System.Drawing.Point(185, 429);
 			this.btnSave.Name = "btnSave";
 			this.btnSave.Size = new System.Drawing.Size(90, 38);
 			this.btnSave.TabIndex = 2;
@@ -213,7 +235,7 @@
 			this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnUpdate.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
 			this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-			this.btnUpdate.Location = new System.Drawing.Point(285, 380);
+			this.btnUpdate.Location = new System.Drawing.Point(285, 429);
 			this.btnUpdate.Name = "btnUpdate";
 			this.btnUpdate.Size = new System.Drawing.Size(90, 38);
 			this.btnUpdate.TabIndex = 3;
@@ -228,7 +250,7 @@
 			this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
 			this.btnDelete.ForeColor = System.Drawing.Color.White;
-			this.btnDelete.Location = new System.Drawing.Point(385, 380);
+			this.btnDelete.Location = new System.Drawing.Point(385, 429);
 			this.btnDelete.Name = "btnDelete";
 			this.btnDelete.Size = new System.Drawing.Size(90, 38);
 			this.btnDelete.TabIndex = 4;
@@ -243,7 +265,7 @@
 			this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnClear.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
 			this.btnClear.ForeColor = System.Drawing.Color.White;
-			this.btnClear.Location = new System.Drawing.Point(485, 380);
+			this.btnClear.Location = new System.Drawing.Point(485, 429);
 			this.btnClear.Name = "btnClear";
 			this.btnClear.Size = new System.Drawing.Size(75, 38);
 			this.btnClear.TabIndex = 5;
@@ -294,5 +316,7 @@
 		public System.Windows.Forms.Button btnUpdate;
 		public System.Windows.Forms.Button btnDelete;
 		public System.Windows.Forms.Button btnClear;
+		private System.Windows.Forms.Label label1;
+		public System.Windows.Forms.TextBox txtBarcode;
 	}
 }
