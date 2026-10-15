@@ -202,3 +202,4 @@ D:\Software Development\ABDI\key_luxery1.7 - removed customer and added invoice 
 D:\Software Development\ABDI\key_luxery1.7 - removed customer and added invoice manage\key_luxery1\obj\Debug\key_luxery1.csproj.CoreCompileInputs.cache
 D:\Software Development\ABDI\key_luxery1.7 - removed customer and added invoice manage\key_luxery1\obj\Debug\key_luxery1.exe
 D:\Software Development\ABDI\key_luxery1.7 - removed customer and added invoice manage\key_luxery1\obj\Debug\key_luxery1.pdb
+D:\Software Development\ABDI\key_luxery1.7 - removed customer and added invoice manage\key_luxery1\obj\Debug\key_luxery1.frmManageUser.resources

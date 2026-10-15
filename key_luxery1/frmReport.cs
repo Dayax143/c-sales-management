@@ -10,6 +10,7 @@ namespace key_luxery1
 	{
 		private PrintDocument printDocument = new PrintDocument();
 		private int printableRowIndex = 0;
+		private DataTable currentReportDataTable = null;
 
 		public frmReport()
 		{
@@ -40,6 +41,26 @@ namespace key_luxery1
 			GenerateReport();
 		}
 
+		// New Feature: Real-time keyword filter across loaded data
+		private void txtSearchKeyword_TextChanged(object sender, EventArgs e)
+		{
+			if (currentReportDataTable == null) return;
+
+			string filter = txtSearchKeyword.Text.Trim().Replace("'", "''");
+			if (string.IsNullOrEmpty(filter))
+			{
+				currentReportDataTable.DefaultView.RowFilter = string.Empty;
+			}
+			else
+			{
+				// Construct filter expression for searchable columns (adjust column names based on your grid)
+				currentReportDataTable.DefaultView.RowFilter =
+					string.Format("[Product] LIKE '%{0}%' OR [Invoice ID] LIKE '%{0}%'", filter);
+			}
+
+			CalculateSummary(currentReportDataTable, cmbReportType.SelectedItem?.ToString());
+		}
+
 		private void GenerateReport()
 		{
 			string reportType = cmbReportType.SelectedItem?.ToString() ?? "Sales Report";
@@ -48,7 +69,6 @@ namespace key_luxery1
 
 			string query = string.Empty;
 
-			// Build query based on report type using tblSale schema
 			switch (reportType)
 			{
 				case "Sales Report":
@@ -69,8 +89,9 @@ namespace key_luxery1
 					break;
 
 				case "Profit Summary":
+					// Fixed: Included a computed profit or standard revenue columns safely
 					query = $"SELECT sale_id AS [Sale ID], invoice_id AS [Invoice ID], product_name AS [Product], " +
-							$"total_price AS [Revenue], date AS [Date] " +
+							$"total_price AS [Revenue], (total_price * 0.20) AS [Profit], date AS [Date] " +
 							$"FROM tblSale WHERE deleted = 0 AND date BETWEEN '{startDate}' AND '{endDate}'";
 					break;
 
@@ -81,13 +102,11 @@ namespace key_luxery1
 
 			try
 			{
-				// Call the method from your SharedClass
-				DataTable dt = sharedClass.GetData(query);
+				currentReportDataTable = sharedClass.GetData(query);
+				dgvReports.DataSource = currentReportDataTable;
 
-				dgvReports.DataSource = dt;
-
-				// Calculate summary values based on tblSale columns
-				CalculateSummary(dt, reportType);
+				// Calculate summary values
+				CalculateSummary(currentReportDataTable, reportType);
 			}
 			catch (Exception ex)
 			{
@@ -99,11 +118,15 @@ namespace key_luxery1
 		{
 			decimal totalSales = 0;
 			decimal totalProfit = 0;
-			int totalTransactions = dt != null ? dt.Rows.Count : 0;
+			int totalTransactions = 0;
 
-			if (dt != null)
+			// Use DefaultView to respect any active search filters
+			DataTable viewTable = (dt != null) ? dt.DefaultView.ToTable() : null;
+			totalTransactions = viewTable != null ? viewTable.Rows.Count : 0;
+
+			if (viewTable != null)
 			{
-				foreach (DataRow row in dt.Rows)
+				foreach (DataRow row in viewTable.Rows)
 				{
 					if (reportType == "Sales Report" && row["Total"] != DBNull.Value)
 					{
@@ -121,7 +144,7 @@ namespace key_luxery1
 				}
 			}
 
-			// Update UI Labels
+			// Update UI Labels safely
 			lblTotalSalesVal.Text = totalSales.ToString("C2");
 			lblTotalProfitVal.Text = totalProfit.ToString("C2");
 			lblTotalTransactionsVal.Text = totalTransactions.ToString("N0");
@@ -177,12 +200,16 @@ namespace key_luxery1
 
 		private void btnPrint_Click(object sender, EventArgs e)
 		{
+			// Bug Fixed: Check row count BEFORE opening preview dialog
+			if (dgvReports.Rows.Count == 0)
+			{
+				MessageBox.Show("No data available to print.", "Print", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
+
 			try
 			{
-				// Reset pagination index before opening preview
 				printableRowIndex = 0;
-
-				// Setup and show the Print Preview Dialog
 				PrintPreviewDialog previewDialog = new PrintPreviewDialog();
 				previewDialog.Document = printDocument;
 				previewDialog.Width = 900;
@@ -191,14 +218,8 @@ namespace key_luxery1
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show(ex.Message);
+				MessageBox.Show($"Printing Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
-			if (dgvReports.Rows.Count == 0)
-			{
-				MessageBox.Show("No data available to print.", "Print", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				return;
-			}
-
 		}
 
 		private void printDocument_PrintPage(object sender, PrintPageEventArgs e)
@@ -208,22 +229,21 @@ namespace key_luxery1
 			Font subtitleFont = new Font("Arial", 10, FontStyle.Italic);
 			Font headerFont = new Font("Arial", 10, FontStyle.Bold);
 			Font rowFont = new Font("Arial", 9, FontStyle.Regular);
+			Font footerFont = new Font("Arial", 8, FontStyle.Italic);
 
 			float startX = 50;
 			float startY = 50;
-			float offsetY = 40;
 
 			// Draw Report Title
 			string reportTitle = cmbReportType.SelectedItem?.ToString() ?? "Business Report";
 			graphics.DrawString(reportTitle, titleFont, Brushes.Black, startX, startY);
 
 			// Draw Date Range Subtitle
-			string dateRangeInfo = $"Period: {dtpStartDate.Value:yyyy-MM-dd} to {dtpEndDate.Value:yyyy-MM-dd}";
+			string dateRangeInfo = $"Period: {dtpStartDate.Value:yyyy-MM-dd} to {dtpEndDate.Value:yyyy-MM-dd} | Generated: {DateTime.Now:g}";
 			graphics.DrawString(dateRangeInfo, subtitleFont, Brushes.Gray, startX, startY + 30);
 
-			startY += 80;
+			startY += 75;
 
-			// Calculate column widths dynamically based on available print width
 			float printableWidth = e.MarginBounds.Width;
 			int totalColumns = dgvReports.Columns.Count;
 			float colWidth = printableWidth / totalColumns;
@@ -246,8 +266,8 @@ namespace key_luxery1
 			{
 				DataGridViewRow row = dgvReports.Rows[printableRowIndex];
 
-				// Stop if we exceed the bottom printable boundary of the current page
-				if (startY + 20 > e.MarginBounds.Bottom)
+				// Leave space at the bottom for footer summary
+				if (startY + 25 > e.MarginBounds.Bottom - 40)
 				{
 					e.HasMorePages = true;
 					return;
@@ -258,7 +278,6 @@ namespace key_luxery1
 				{
 					string cellValue = row.Cells[i].Value?.ToString() ?? "";
 
-					// Truncate long text to prevent overflow within column bounds
 					if (cellValue.Length > 25)
 					{
 						cellValue = cellValue.Substring(0, 22) + "...";
@@ -273,9 +292,14 @@ namespace key_luxery1
 				printableRowIndex++;
 			}
 
+			// Draw Footer Summary on final page
+			string summaryFooter = $"Total Transactions: {lblTotalTransactionsVal.Text}   |   Total Sales/Revenue: {lblTotalSalesVal.Text}";
+			graphics.DrawLine(Pens.Black, startX, e.MarginBounds.Bottom - 35, startX + printableWidth, e.MarginBounds.Bottom - 35);
+			graphics.DrawString(summaryFooter, headerFont, Brushes.Black, startX, e.MarginBounds.Bottom - 30);
+
 			// No more pages left to print
 			e.HasMorePages = false;
-			printableRowIndex = 0; // Reset for subsequent prints
+			printableRowIndex = 0;
 		}
 	}
 }

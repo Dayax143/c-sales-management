@@ -36,6 +36,8 @@
 			this.pnlTopFilter = new System.Windows.Forms.Panel();
 			this.lblEndDate = new System.Windows.Forms.Label();
 			this.pnlSummary = new System.Windows.Forms.Panel();
+			this.txtSearchKeyword = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.dgvReports)).BeginInit();
 			this.pnlActions.SuspendLayout();
 			this.pnlTopFilter.SuspendLayout();
@@ -55,7 +57,7 @@
 			this.dgvReports.ReadOnly = true;
 			this.dgvReports.RowHeadersWidth = 51;
 			this.dgvReports.RowTemplate.Height = 24;
-			this.dgvReports.Size = new System.Drawing.Size(1033, 407);
+			this.dgvReports.Size = new System.Drawing.Size(1130, 462);
 			this.dgvReports.TabIndex = 7;
 			// 
 			// btnPrint
@@ -73,12 +75,14 @@
 			// pnlActions
 			// 
 			this.pnlActions.BackColor = System.Drawing.Color.WhiteSmoke;
+			this.pnlActions.Controls.Add(this.txtSearchKeyword);
 			this.pnlActions.Controls.Add(this.btnPrint);
+			this.pnlActions.Controls.Add(this.label1);
 			this.pnlActions.Controls.Add(this.btnExportExcel);
 			this.pnlActions.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.pnlActions.Location = new System.Drawing.Point(0, 557);
+			this.pnlActions.Location = new System.Drawing.Point(0, 612);
 			this.pnlActions.Name = "pnlActions";
-			this.pnlActions.Size = new System.Drawing.Size(1033, 65);
+			this.pnlActions.Size = new System.Drawing.Size(1130, 65);
 			this.pnlActions.TabIndex = 6;
 			// 
 			// btnExportExcel
@@ -243,7 +247,7 @@
 			this.pnlTopFilter.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnlTopFilter.Location = new System.Drawing.Point(0, 75);
 			this.pnlTopFilter.Name = "pnlTopFilter";
-			this.pnlTopFilter.Size = new System.Drawing.Size(1033, 75);
+			this.pnlTopFilter.Size = new System.Drawing.Size(1130, 75);
 			this.pnlTopFilter.TabIndex = 4;
 			// 
 			// lblEndDate
@@ -269,14 +273,33 @@
 			this.pnlSummary.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnlSummary.Location = new System.Drawing.Point(0, 0);
 			this.pnlSummary.Name = "pnlSummary";
-			this.pnlSummary.Size = new System.Drawing.Size(1033, 75);
+			this.pnlSummary.Size = new System.Drawing.Size(1130, 75);
 			this.pnlSummary.TabIndex = 5;
+			// 
+			// txtSearchKeyword
+			// 
+			this.txtSearchKeyword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.txtSearchKeyword.Location = new System.Drawing.Point(865, 15);
+			this.txtSearchKeyword.Name = "txtSearchKeyword";
+			this.txtSearchKeyword.Size = new System.Drawing.Size(251, 22);
+			this.txtSearchKeyword.TabIndex = 2;
+			// 
+			// label1
+			// 
+			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.label1.AutoSize = true;
+			this.label1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+			this.label1.Location = new System.Drawing.Point(760, 16);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(99, 19);
+			this.label1.TabIndex = 4;
+			this.label1.Text = "Search by :";
 			// 
 			// frmReport
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1033, 622);
+			this.ClientSize = new System.Drawing.Size(1130, 677);
 			this.Controls.Add(this.dgvReports);
 			this.Controls.Add(this.pnlActions);
 			this.Controls.Add(this.pnlTopFilter);
@@ -286,6 +309,7 @@
 			this.Click += new System.EventHandler(this.frmReport_Load);
 			((System.ComponentModel.ISupportInitialize)(this.dgvReports)).EndInit();
 			this.pnlActions.ResumeLayout(false);
+			this.pnlActions.PerformLayout();
 			this.pnlTopFilter.ResumeLayout(false);
 			this.pnlTopFilter.PerformLayout();
 			this.pnlSummary.ResumeLayout(false);
@@ -315,5 +339,7 @@
 		private System.Windows.Forms.Panel pnlTopFilter;
 		private System.Windows.Forms.Label lblEndDate;
 		private System.Windows.Forms.Panel pnlSummary;
+		private System.Windows.Forms.TextBox txtSearchKeyword;
+		private System.Windows.Forms.Label label1;
 	}
 }

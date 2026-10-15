@@ -8,6 +8,7 @@ namespace key_luxery1
 		public frmDashboard()
 		{
 			InitializeComponent();
+
 		}
 
 		private void frmDashboard_Load(object sender, EventArgs e)
@@ -126,29 +127,29 @@ namespace key_luxery1
 			// Expand/Collapse Sidebar Toggle functionality
 			if (PnlSidebar.Width > 60)
 			{
-				PnlSidebar.Width = 60;
+				PnlSidebar.Width = 0;
 			}
 			else
 			{
 				PnlSidebar.Width = 203;
 			}
 		}
-
+		
 		private void btnLogout_Click(object sender, EventArgs e)
 		{
 			var result = MessageBox.Show("Are you sure you want to logout?", "Confirm Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 			if (result == DialogResult.Yes)
 			{
-				this.Hide();
-				// frmLogin login = new frmLogin();
-				// login.Show();
-				this.Close();
+				Hide();
+				frmLogin login = new frmLogin();
+				login.Show();
+				Close();
 			}
 		}
 
 		private void frmDashboard_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			Application.Exit();
+
 		}
 	}
 }

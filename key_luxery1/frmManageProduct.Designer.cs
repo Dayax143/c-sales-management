@@ -102,7 +102,7 @@
 			this.txtProductID.Location = new System.Drawing.Point(160, 35);
 			this.txtProductID.Name = "txtProductID";
 			this.txtProductID.Size = new System.Drawing.Size(340, 29);
-			this.txtProductID.TabIndex = 0;
+			this.txtProductID.TabIndex = 20;
 			// 
 			// lblName
 			// 
@@ -136,6 +136,10 @@
 			// 
 			this.cmbCategory.Font = new System.Drawing.Font("Segoe UI", 9.5F);
 			this.cmbCategory.FormattingEnabled = true;
+			this.cmbCategory.Items.AddRange(new object[] {
+            "Cadaro",
+            "Saacado",
+            "Other"});
 			this.cmbCategory.Location = new System.Drawing.Point(160, 115);
 			this.cmbCategory.Name = "cmbCategory";
 			this.cmbCategory.Size = new System.Drawing.Size(340, 29);

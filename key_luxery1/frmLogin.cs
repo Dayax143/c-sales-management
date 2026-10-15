@@ -18,17 +18,20 @@ namespace key_luxery1
 			string username = TxtUser.Text.Trim();
 			string password = TxtPassword.Text.Trim();
 
+
+			// Open main dashboard and hide login screen
+			frmDashboard dashboard = new frmDashboard();
+
 			// Validate inputs
 			if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
 			{
 				MessageBox.Show("Please enter both username and password.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				return;
 			}
-
 			try
 			{
 				// Query user record matching exact schema columns
-				string query = $"SELECT user_id, userName, passWord, role, user_Status FROM tblUser WHERE userName = '{username.Replace("'", "''")}'";
+				string query = $"SELECT userName, passWord, role, user_Status FROM tblUser WHERE userName = '{username.Replace("'", "''")}'";
 				DataTable dt = sharedClass.GetData(query);
 
 				if (dt.Rows.Count > 0)
@@ -52,10 +55,26 @@ namespace key_luxery1
 					// Verify password
 					if (dbPassword == password)
 					{
+						if(role=="Admin")
+						{
+
+						}
+						else if(role!="Admin")
+						{
+							//dash.btnReport.Visible = false;
+							//dash.pnlReport.Visible = false;
+							//dash.BtnUsers.Visible = false;
+							//dash.PnlUsers.Visible = false;
+							dashboard.PnlSidebar.Visible = false;
+							dashboard.BtnSidebar.Visible = false;
+						}
+						else
+						{
+							MessageBox.Show("Your role is not recognized. Please contact the administrator.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+							return;
+						}	
 						MessageBox.Show($"Welcome back, {username}!\nRole: {role}", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-						// Open main dashboard and hide login screen
-						frmDashboard dashboard = new frmDashboard();
 						dashboard.Show();
 						this.Hide();
 					}
@@ -80,7 +99,7 @@ namespace key_luxery1
 		private void chkShowPassword_CheckedChanged(object sender, EventArgs e)
 		{
 			// If the checkbox is checked, reveal the password text; otherwise, mask it.
-			if (chkShowPassword.Checked)
+			if (chkShowPassword.Checked==true)
 			{
 				TxtPassword.UseSystemPasswordChar = false;
 			}

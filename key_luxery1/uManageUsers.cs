@@ -48,8 +48,8 @@ namespace key_luxery1
 
 		private void btnAddUser_Click(object sender, EventArgs e)
 		{
-			MessageBox.Show("Open Add User dialog / form here.", "Add User", MessageBoxButtons.OK, MessageBoxIcon.Information);
-			LoadUsersData();
+			frmManageUser manageuser = new frmManageUser();
+			manageuser.ShowDialog();
 		}
 
 		private void btnRefresh_Click(object sender, EventArgs e)

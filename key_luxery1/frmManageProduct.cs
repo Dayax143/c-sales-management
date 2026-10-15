@@ -16,8 +16,35 @@ namespace key_luxery1
 		{
 			try
 			{
-				string query = $"INSERT INTO tblProduct (Product_Name, Category, quantity, UnitCost, Price,date,barcode, deleted) VALUES ('{txtProductName.Text.Trim()}', '{cmbCategory.Text.Trim()}', {txtStock.Text.Trim()}, {txtCost.Text.Trim()}, {txtPrice.Text.Trim()},'{DateTime.Now}',{txtBarcode.Text.Trim()}, 0)"; 
+				// Handle optional Category: if empty, pass SQL NULL; otherwise, wrap in single quotes
+				string categoryValue = string.IsNullOrWhiteSpace(cmbCategory.Text)
+					? "NULL"
+					: $"'{cmbCategory.Text.Trim().Replace("'", "''")}'";
+
+				// Handle optional Barcode: if empty, pass SQL NULL; otherwise, wrap in single quotes
+				string barcodeValue = string.IsNullOrWhiteSpace(txtBarcode.Text)
+					? "NULL"
+					: $"'{txtBarcode.Text.Trim().Replace("'", "''")}'";
+
+				// Handle numerical fields with defaults if empty
+				string quantity = string.IsNullOrWhiteSpace(txtStock.Text) ? "0" : txtStock.Text.Trim();
+				string unitCost = string.IsNullOrWhiteSpace(txtCost.Text) ? "0" : txtCost.Text.Trim();
+				string price = string.IsNullOrWhiteSpace(txtPrice.Text) ? "0" : txtPrice.Text.Trim();
+
+				// Construct the SQL query for your SharedClass ExecuteQueries method
+				string query = $@"INSERT INTO tblProduct (Product_Name, Category, quantity, UnitCost, Price, date, barcode, deleted) 
+                     VALUES ('{txtProductName.Text.Trim().Replace("'", "''")}', 
+                             {categoryValue}, 
+                             {quantity}, 
+                             {unitCost}, 
+                             {price}, 
+                             '{DateTime.Now:yyyy-MM-dd HH:mm:ss}', 
+                             {barcodeValue}, 
+                             0)";
+
+				// Execute via your SharedClass instance
 				db.ExecuteQueries(query);
+
 				MessageBox.Show("Product saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				btnClean_Click(sender, e);
 			}
