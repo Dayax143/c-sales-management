@@ -230,7 +230,7 @@ namespace key_luxery1
 			offset += 22;
 			g.DrawString($"Discount: ${discount:N2}", regularFont, brush, startX + 330, startY + offset);
 			offset += 22;
-			g.DrawString($"Tax: ${tax:N2}", regularFont, brush, startX + 330, startY + offset);
+			g.DrawString($"GST Tax: ${tax:N2}", regularFont, brush, startX + 330, startY + offset);
 			offset += 25;
 			g.DrawString($"Grand Total: ${grandTotal:N2}", boldFont, brush, startX + 290, startY + offset);
 			offset += 50;

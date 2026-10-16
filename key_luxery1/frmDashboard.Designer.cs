@@ -54,6 +54,9 @@
 			this.panel3 = new System.Windows.Forms.Panel();
 			this.pnlInvoice = new System.Windows.Forms.Panel();
 			this.btnInvoice = new System.Windows.Forms.Button();
+			this.btnCustomer = new System.Windows.Forms.Button();
+			this.pnlCustomer = new System.Windows.Forms.Panel();
+			this.uInvoice1 = new key_luxery1.uInvoice();
 			this.uCustomer1 = new key_luxery1.uCustomer();
 			this.uPayments1 = new key_luxery1.uPayments();
 			this.uSettings1 = new key_luxery1.uSettings();
@@ -62,7 +65,6 @@
 			this.uHome1 = new key_luxery1.uHome();
 			this.uSales1 = new key_luxery1.uSales();
 			this.uProducts1 = new key_luxery1.uProducts();
-			this.uInvoice1 = new key_luxery1.uInvoice();
 			this.PnlSidebar.SuspendLayout();
 			this.panel3.SuspendLayout();
 			this.SuspendLayout();
@@ -246,7 +248,7 @@
 			// 
 			this.pnlPayment.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.pnlPayment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-			this.pnlPayment.Location = new System.Drawing.Point(636, 88);
+			this.pnlPayment.Location = new System.Drawing.Point(597, 86);
 			this.pnlPayment.Margin = new System.Windows.Forms.Padding(4);
 			this.pnlPayment.Name = "pnlPayment";
 			this.pnlPayment.Size = new System.Drawing.Size(120, 6);
@@ -256,7 +258,7 @@
 			// 
 			this.pnlProducts.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.pnlProducts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-			this.pnlProducts.Location = new System.Drawing.Point(372, 88);
+			this.pnlProducts.Location = new System.Drawing.Point(333, 86);
 			this.pnlProducts.Margin = new System.Windows.Forms.Padding(4);
 			this.pnlProducts.Name = "pnlProducts";
 			this.pnlProducts.Size = new System.Drawing.Size(120, 6);
@@ -266,7 +268,7 @@
 			// 
 			this.pnlSale.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.pnlSale.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-			this.pnlSale.Location = new System.Drawing.Point(240, 88);
+			this.pnlSale.Location = new System.Drawing.Point(201, 86);
 			this.pnlSale.Margin = new System.Windows.Forms.Padding(4);
 			this.pnlSale.Name = "pnlSale";
 			this.pnlSale.Size = new System.Drawing.Size(120, 6);
@@ -296,7 +298,7 @@
 			this.btnPayments.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPayments.Font = new System.Drawing.Font("Segoe UI", 11F);
 			this.btnPayments.ForeColor = System.Drawing.Color.White;
-			this.btnPayments.Location = new System.Drawing.Point(636, 45);
+			this.btnPayments.Location = new System.Drawing.Point(597, 43);
 			this.btnPayments.Margin = new System.Windows.Forms.Padding(4);
 			this.btnPayments.Name = "btnPayments";
 			this.btnPayments.Size = new System.Drawing.Size(120, 40);
@@ -312,7 +314,7 @@
 			this.btnProducts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnProducts.Font = new System.Drawing.Font("Segoe UI", 11F);
 			this.btnProducts.ForeColor = System.Drawing.Color.White;
-			this.btnProducts.Location = new System.Drawing.Point(372, 45);
+			this.btnProducts.Location = new System.Drawing.Point(333, 43);
 			this.btnProducts.Margin = new System.Windows.Forms.Padding(4);
 			this.btnProducts.Name = "btnProducts";
 			this.btnProducts.Size = new System.Drawing.Size(120, 40);
@@ -378,7 +380,7 @@
 			this.btnSales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSales.Font = new System.Drawing.Font("Segoe UI", 11F);
 			this.btnSales.ForeColor = System.Drawing.Color.White;
-			this.btnSales.Location = new System.Drawing.Point(240, 45);
+			this.btnSales.Location = new System.Drawing.Point(201, 43);
 			this.btnSales.Margin = new System.Windows.Forms.Padding(4);
 			this.btnSales.Name = "btnSales";
 			this.btnSales.Size = new System.Drawing.Size(120, 40);
@@ -392,11 +394,13 @@
 			this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
 			this.panel3.Controls.Add(this.BtnSidebar);
 			this.panel3.Controls.Add(this.pnlInvoice);
+			this.panel3.Controls.Add(this.pnlCustomer);
 			this.panel3.Controls.Add(this.pnlPayment);
 			this.panel3.Controls.Add(this.pnlProducts);
 			this.panel3.Controls.Add(this.pnlSale);
 			this.panel3.Controls.Add(this.btnLogout);
 			this.panel3.Controls.Add(this.btnInvoice);
+			this.panel3.Controls.Add(this.btnCustomer);
 			this.panel3.Controls.Add(this.btnPayments);
 			this.panel3.Controls.Add(this.btnProducts);
 			this.panel3.Controls.Add(this.lblUsername);
@@ -410,12 +414,13 @@
 			this.panel3.Name = "panel3";
 			this.panel3.Size = new System.Drawing.Size(1213, 100);
 			this.panel3.TabIndex = 14;
+			this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
 			// 
 			// pnlInvoice
 			// 
 			this.pnlInvoice.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.pnlInvoice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-			this.pnlInvoice.Location = new System.Drawing.Point(504, 88);
+			this.pnlInvoice.Location = new System.Drawing.Point(465, 86);
 			this.pnlInvoice.Margin = new System.Windows.Forms.Padding(4);
 			this.pnlInvoice.Name = "pnlInvoice";
 			this.pnlInvoice.Size = new System.Drawing.Size(120, 6);
@@ -428,14 +433,49 @@
 			this.btnInvoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnInvoice.Font = new System.Drawing.Font("Segoe UI", 11F);
 			this.btnInvoice.ForeColor = System.Drawing.Color.White;
-			this.btnInvoice.Location = new System.Drawing.Point(504, 45);
+			this.btnInvoice.Location = new System.Drawing.Point(465, 43);
 			this.btnInvoice.Margin = new System.Windows.Forms.Padding(4);
 			this.btnInvoice.Name = "btnInvoice";
 			this.btnInvoice.Size = new System.Drawing.Size(120, 40);
 			this.btnInvoice.TabIndex = 0;
 			this.btnInvoice.Text = "Invoices";
 			this.btnInvoice.UseVisualStyleBackColor = true;
-			this.btnInvoice.Click += new System.EventHandler(this.btnCustomer_Click);
+			this.btnInvoice.Click += new System.EventHandler(this.btnInvoice_Click);
+			// 
+			// btnCustomer
+			// 
+			this.btnCustomer.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.btnCustomer.FlatAppearance.BorderSize = 0;
+			this.btnCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnCustomer.Font = new System.Drawing.Font("Segoe UI", 11F);
+			this.btnCustomer.ForeColor = System.Drawing.Color.White;
+			this.btnCustomer.Location = new System.Drawing.Point(725, 43);
+			this.btnCustomer.Margin = new System.Windows.Forms.Padding(4);
+			this.btnCustomer.Name = "btnCustomer";
+			this.btnCustomer.Size = new System.Drawing.Size(120, 40);
+			this.btnCustomer.TabIndex = 0;
+			this.btnCustomer.Text = "Customers";
+			this.btnCustomer.UseVisualStyleBackColor = true;
+			this.btnCustomer.Click += new System.EventHandler(this.btnCustomer_Click);
+			// 
+			// pnlCustomer
+			// 
+			this.pnlCustomer.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.pnlCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+			this.pnlCustomer.Location = new System.Drawing.Point(725, 86);
+			this.pnlCustomer.Margin = new System.Windows.Forms.Padding(4);
+			this.pnlCustomer.Name = "pnlCustomer";
+			this.pnlCustomer.Size = new System.Drawing.Size(120, 6);
+			this.pnlCustomer.TabIndex = 3;
+			// 
+			// uInvoice1
+			// 
+			this.uInvoice1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
+			this.uInvoice1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.uInvoice1.Location = new System.Drawing.Point(203, 100);
+			this.uInvoice1.Name = "uInvoice1";
+			this.uInvoice1.Size = new System.Drawing.Size(1010, 670);
+			this.uInvoice1.TabIndex = 5;
 			// 
 			// uCustomer1
 			// 
@@ -510,15 +550,6 @@
 			this.uProducts1.Size = new System.Drawing.Size(1010, 670);
 			this.uProducts1.TabIndex = 16;
 			// 
-			// uInvoice1
-			// 
-			this.uInvoice1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-			this.uInvoice1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.uInvoice1.Location = new System.Drawing.Point(203, 100);
-			this.uInvoice1.Name = "uInvoice1";
-			this.uInvoice1.Size = new System.Drawing.Size(1010, 670);
-			this.uInvoice1.TabIndex = 5;
-			// 
 			// frmDashboard
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -587,5 +618,7 @@
 		private System.Windows.Forms.Button btnInvoice;
 		private uCustomer uCustomer1;
 		private uInvoice uInvoice1;
+		private System.Windows.Forms.Panel pnlCustomer;
+		private System.Windows.Forms.Button btnCustomer;
 	}
 }

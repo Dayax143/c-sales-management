@@ -30,12 +30,14 @@
 		{
 			this.lblTitle = new System.Windows.Forms.Label();
 			this.grpCustomerDetails = new System.Windows.Forms.GroupBox();
+			this.cmbstatus = new System.Windows.Forms.ComboBox();
 			this.lblID = new System.Windows.Forms.Label();
 			this.txtCustomerID = new System.Windows.Forms.TextBox();
 			this.lblName = new System.Windows.Forms.Label();
 			this.txtCustomerName = new System.Windows.Forms.TextBox();
 			this.lblPhone = new System.Windows.Forms.Label();
 			this.txtPhone = new System.Windows.Forms.TextBox();
+			this.label1 = new System.Windows.Forms.Label();
 			this.lblAddress = new System.Windows.Forms.Label();
 			this.txtAddress = new System.Windows.Forms.TextBox();
 			this.btnSave = new System.Windows.Forms.Button();
@@ -46,8 +48,6 @@
 			this.lblSearch = new System.Windows.Forms.Label();
 			this.txtSearchPhone = new System.Windows.Forms.TextBox();
 			this.btnGet = new System.Windows.Forms.Button();
-			this.label1 = new System.Windows.Forms.Label();
-			this.cmbstatus = new System.Windows.Forms.ComboBox();
 			this.grpCustomerDetails.SuspendLayout();
 			this.grpSearch.SuspendLayout();
 			this.SuspendLayout();
@@ -85,6 +85,14 @@
 			this.grpCustomerDetails.TabIndex = 1;
 			this.grpCustomerDetails.TabStop = false;
 			this.grpCustomerDetails.Text = "Customer Information";
+			// 
+			// cmbstatus
+			// 
+			this.cmbstatus.FormattingEnabled = true;
+			this.cmbstatus.Location = new System.Drawing.Point(155, 201);
+			this.cmbstatus.Name = "cmbstatus";
+			this.cmbstatus.Size = new System.Drawing.Size(395, 28);
+			this.cmbstatus.TabIndex = 8;
 			// 
 			// lblID
 			// 
@@ -133,6 +141,15 @@
 			this.txtPhone.Name = "txtPhone";
 			this.txtPhone.Size = new System.Drawing.Size(395, 27);
 			this.txtPhone.TabIndex = 5;
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(30, 204);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(49, 20);
+			this.label1.TabIndex = 6;
+			this.label1.Text = "Status";
 			// 
 			// lblAddress
 			// 
@@ -217,6 +234,7 @@
 			// 
 			// lblSearch
 			// 
+			this.lblSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.lblSearch.AutoSize = true;
 			this.lblSearch.Location = new System.Drawing.Point(30, 38);
 			this.lblSearch.Name = "lblSearch";
@@ -226,9 +244,9 @@
 			// 
 			// txtSearchPhone
 			// 
-			this.txtSearchPhone.Location = new System.Drawing.Point(140, 35);
+			this.txtSearchPhone.Location = new System.Drawing.Point(180, 35);
 			this.txtSearchPhone.Name = "txtSearchPhone";
-			this.txtSearchPhone.Size = new System.Drawing.Size(305, 27);
+			this.txtSearchPhone.Size = new System.Drawing.Size(265, 27);
 			this.txtSearchPhone.TabIndex = 1;
 			// 
 			// btnGet
@@ -242,23 +260,7 @@
 			this.btnGet.TabIndex = 2;
 			this.btnGet.Text = "Search";
 			this.btnGet.UseVisualStyleBackColor = false;
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(30, 204);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(49, 20);
-			this.label1.TabIndex = 6;
-			this.label1.Text = "Status";
-			// 
-			// cmbstatus
-			// 
-			this.cmbstatus.FormattingEnabled = true;
-			this.cmbstatus.Location = new System.Drawing.Point(155, 201);
-			this.cmbstatus.Name = "cmbstatus";
-			this.cmbstatus.Size = new System.Drawing.Size(395, 28);
-			this.cmbstatus.TabIndex = 8;
+			this.btnGet.Click += new System.EventHandler(this.btnGet_Click);
 			// 
 			// frmManageCustomer
 			// 

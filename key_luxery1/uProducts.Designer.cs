@@ -28,9 +28,10 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.panelTopBar = new System.Windows.Forms.Panel();
+			this.btnDeleteSelected = new System.Windows.Forms.Button();
 			this.btnExport = new System.Windows.Forms.Button();
 			this.btnRefresh = new System.Windows.Forms.Button();
 			this.btnStock = new System.Windows.Forms.Button();
@@ -40,14 +41,21 @@
 			this.txtSearchFilter = new System.Windows.Forms.TextBox();
 			this.cmbFilterCategory = new System.Windows.Forms.ComboBox();
 			this.dgvProducts = new System.Windows.Forms.DataGridView();
+			this.chkSelect = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.panelBottomPagination = new System.Windows.Forms.Panel();
+			this.btnPrev = new System.Windows.Forms.Button();
+			this.lblPageInfo = new System.Windows.Forms.Label();
+			this.btnNext = new System.Windows.Forms.Button();
+			this.btnImport = new System.Windows.Forms.Button();
 			this.panelTopBar.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
+			this.panelBottomPagination.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panelTopBar
 			// 
 			this.panelTopBar.BackColor = System.Drawing.Color.White;
-			this.panelTopBar.Controls.Add(this.btnExport);
+			this.panelTopBar.Controls.Add(this.btnDeleteSelected);
 			this.panelTopBar.Controls.Add(this.btnRefresh);
 			this.panelTopBar.Controls.Add(this.btnStock);
 			this.panelTopBar.Controls.Add(this.btnAddProduct);
@@ -61,14 +69,30 @@
 			this.panelTopBar.Size = new System.Drawing.Size(1219, 90);
 			this.panelTopBar.TabIndex = 0;
 			// 
+			// btnDeleteSelected
+			// 
+			this.btnDeleteSelected.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
+			this.btnDeleteSelected.FlatAppearance.BorderSize = 0;
+			this.btnDeleteSelected.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnDeleteSelected.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+			this.btnDeleteSelected.ForeColor = System.Drawing.Color.White;
+			this.btnDeleteSelected.Location = new System.Drawing.Point(355, 26);
+			this.btnDeleteSelected.Name = "btnDeleteSelected";
+			this.btnDeleteSelected.Size = new System.Drawing.Size(130, 35);
+			this.btnDeleteSelected.TabIndex = 7;
+			this.btnDeleteSelected.Text = "Delete Selected";
+			this.btnDeleteSelected.UseVisualStyleBackColor = false;
+			this.btnDeleteSelected.Click += new System.EventHandler(this.btnDeleteSelected_Click);
+			// 
 			// btnExport
 			// 
+			this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnExport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(126)))), ((int)(((byte)(34)))));
 			this.btnExport.FlatAppearance.BorderSize = 0;
 			this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnExport.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
 			this.btnExport.ForeColor = System.Drawing.Color.White;
-			this.btnExport.Location = new System.Drawing.Point(241, 26);
+			this.btnExport.Location = new System.Drawing.Point(927, 10);
 			this.btnExport.Name = "btnExport";
 			this.btnExport.Size = new System.Drawing.Size(110, 35);
 			this.btnExport.TabIndex = 6;
@@ -98,7 +122,7 @@
 			this.btnStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnStock.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
 			this.btnStock.ForeColor = System.Drawing.Color.White;
-			this.btnStock.Location = new System.Drawing.Point(357, 26);
+			this.btnStock.Location = new System.Drawing.Point(240, 26);
 			this.btnStock.Name = "btnStock";
 			this.btnStock.Size = new System.Drawing.Size(105, 35);
 			this.btnStock.TabIndex = 5;
@@ -119,7 +143,7 @@
 			this.btnAddProduct.TabIndex = 5;
 			this.btnAddProduct.Text = "+ Add Item";
 			this.btnAddProduct.UseVisualStyleBackColor = false;
-			this.btnAddProduct.Click += new System.EventHandler(this.button1_Click);
+			this.btnAddProduct.Click += new System.EventHandler(this.btnAddProduct_Click);
 			// 
 			// lblSearch
 			// 
@@ -173,34 +197,101 @@
 			this.dgvProducts.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.dgvProducts.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
 			this.dgvProducts.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-			dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
-			dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dgvProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+			dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+			dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+			dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+			dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvProducts.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
 			this.dgvProducts.ColumnHeadersHeight = 40;
-			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.dgvProducts.DefaultCellStyle = dataGridViewCellStyle2;
+			this.dgvProducts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.chkSelect});
+			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+			dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+			dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.dgvProducts.DefaultCellStyle = dataGridViewCellStyle4;
 			this.dgvProducts.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dgvProducts.EnableHeadersVisualStyles = false;
 			this.dgvProducts.Location = new System.Drawing.Point(0, 90);
 			this.dgvProducts.Name = "dgvProducts";
-			this.dgvProducts.ReadOnly = true;
 			this.dgvProducts.RowHeadersVisible = false;
 			this.dgvProducts.RowHeadersWidth = 51;
 			this.dgvProducts.RowTemplate.Height = 32;
 			this.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgvProducts.Size = new System.Drawing.Size(1219, 674);
+			this.dgvProducts.Size = new System.Drawing.Size(1219, 624);
 			this.dgvProducts.TabIndex = 1;
+			// 
+			// chkSelect
+			// 
+			this.chkSelect.HeaderText = "Select";
+			this.chkSelect.MinimumWidth = 6;
+			this.chkSelect.Name = "chkSelect";
+			// 
+			// panelBottomPagination
+			// 
+			this.panelBottomPagination.BackColor = System.Drawing.Color.White;
+			this.panelBottomPagination.Controls.Add(this.btnPrev);
+			this.panelBottomPagination.Controls.Add(this.btnExport);
+			this.panelBottomPagination.Controls.Add(this.lblPageInfo);
+			this.panelBottomPagination.Controls.Add(this.btnImport);
+			this.panelBottomPagination.Controls.Add(this.btnNext);
+			this.panelBottomPagination.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.panelBottomPagination.Location = new System.Drawing.Point(0, 714);
+			this.panelBottomPagination.Name = "panelBottomPagination";
+			this.panelBottomPagination.Size = new System.Drawing.Size(1219, 50);
+			this.panelBottomPagination.TabIndex = 2;
+			// 
+			// btnPrev
+			// 
+			this.btnPrev.Location = new System.Drawing.Point(20, 10);
+			this.btnPrev.Name = "btnPrev";
+			this.btnPrev.Size = new System.Drawing.Size(90, 30);
+			this.btnPrev.TabIndex = 0;
+			this.btnPrev.Text = "< Previous";
+			this.btnPrev.UseVisualStyleBackColor = true;
+			this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
+			// 
+			// lblPageInfo
+			// 
+			this.lblPageInfo.AutoSize = true;
+			this.lblPageInfo.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+			this.lblPageInfo.Location = new System.Drawing.Point(130, 14);
+			this.lblPageInfo.Name = "lblPageInfo";
+			this.lblPageInfo.Size = new System.Drawing.Size(94, 21);
+			this.lblPageInfo.TabIndex = 1;
+			this.lblPageInfo.Text = "Page 1 of 1";
+			// 
+			// btnNext
+			// 
+			this.btnNext.Location = new System.Drawing.Point(240, 10);
+			this.btnNext.Name = "btnNext";
+			this.btnNext.Size = new System.Drawing.Size(90, 30);
+			this.btnNext.TabIndex = 2;
+			this.btnNext.Text = "Next >";
+			this.btnNext.UseVisualStyleBackColor = true;
+			this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+			// 
+			// btnImport
+			// 
+			this.btnImport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnImport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+			this.btnImport.FlatAppearance.BorderSize = 0;
+			this.btnImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnImport.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+			this.btnImport.ForeColor = System.Drawing.Color.White;
+			this.btnImport.Location = new System.Drawing.Point(1052, 10);
+			this.btnImport.Name = "btnImport";
+			this.btnImport.Size = new System.Drawing.Size(138, 35);
+			this.btnImport.TabIndex = 5;
+			this.btnImport.Text = "Import list";
+			this.btnImport.UseVisualStyleBackColor = false;
+			this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
 			// 
 			// uProducts
 			// 
@@ -209,15 +300,26 @@
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
 			this.Controls.Add(this.dgvProducts);
 			this.Controls.Add(this.panelTopBar);
+			this.Controls.Add(this.panelBottomPagination);
 			this.Name = "uProducts";
 			this.Size = new System.Drawing.Size(1219, 764);
 			this.Load += new System.EventHandler(this.uProducts_Load);
 			this.panelTopBar.ResumeLayout(false);
 			this.panelTopBar.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
+			this.panelBottomPagination.ResumeLayout(false);
+			this.panelBottomPagination.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
+
+			// Add these control declarations at the bottom of uProducts.Designer.cs
+public System.Windows.Forms.Panel panelBottomPagination;
+		public System.Windows.Forms.Button btnPrev;
+		public System.Windows.Forms.Button btnNext;
+		public System.Windows.Forms.Label lblPageInfo;
+
+	
 
 		#endregion
 
@@ -231,5 +333,8 @@
 		private System.Windows.Forms.Button btnExport;
 		private System.Windows.Forms.DataGridView dgvProducts;
 		private System.Windows.Forms.Button btnStock;
+		public System.Windows.Forms.Button btnDeleteSelected;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn chkSelect;
+		private System.Windows.Forms.Button btnImport;
 	}
 }

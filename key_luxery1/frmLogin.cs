@@ -57,7 +57,8 @@ namespace key_luxery1
 					{
 						if(role=="Admin")
 						{
-
+							dashboard.PnlSidebar.Visible = true;
+							dashboard.BtnSidebar.Visible = true;
 						}
 						else if(role!="Admin")
 						{
@@ -75,6 +76,7 @@ namespace key_luxery1
 						}	
 						MessageBox.Show($"Welcome back, {username}!\nRole: {role}", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+						dashboard.lblUsername.Text = username;
 						dashboard.Show();
 						this.Hide();
 					}

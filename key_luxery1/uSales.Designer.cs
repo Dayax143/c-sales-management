@@ -39,8 +39,13 @@
 			this.btnManageSale = new System.Windows.Forms.Button();
 			this.btnNewSale = new System.Windows.Forms.Button();
 			this.dgvSales = new System.Windows.Forms.DataGridView();
+			this.panelBottomPagination = new System.Windows.Forms.Panel();
+			this.btnPrev = new System.Windows.Forms.Button();
+			this.lblPageInfo = new System.Windows.Forms.Label();
+			this.btnNext = new System.Windows.Forms.Button();
 			this.panelTopBar.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvSales)).BeginInit();
+			this.panelBottomPagination.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panelTopBar
@@ -186,8 +191,50 @@
 			this.dgvSales.RowHeadersWidth = 51;
 			this.dgvSales.RowTemplate.Height = 32;
 			this.dgvSales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgvSales.Size = new System.Drawing.Size(1219, 674);
+			this.dgvSales.Size = new System.Drawing.Size(1219, 624);
 			this.dgvSales.TabIndex = 6;
+			// 
+			// panelBottomPagination
+			// 
+			this.panelBottomPagination.BackColor = System.Drawing.Color.White;
+			this.panelBottomPagination.Controls.Add(this.btnPrev);
+			this.panelBottomPagination.Controls.Add(this.lblPageInfo);
+			this.panelBottomPagination.Controls.Add(this.btnNext);
+			this.panelBottomPagination.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.panelBottomPagination.Location = new System.Drawing.Point(0, 714);
+			this.panelBottomPagination.Name = "panelBottomPagination";
+			this.panelBottomPagination.Size = new System.Drawing.Size(1219, 50);
+			this.panelBottomPagination.TabIndex = 8;
+			// 
+			// btnPrev
+			// 
+			this.btnPrev.Location = new System.Drawing.Point(20, 10);
+			this.btnPrev.Name = "btnPrev";
+			this.btnPrev.Size = new System.Drawing.Size(90, 30);
+			this.btnPrev.TabIndex = 0;
+			this.btnPrev.Text = "< Previous";
+			this.btnPrev.UseVisualStyleBackColor = true;
+			this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
+			// 
+			// lblPageInfo
+			// 
+			this.lblPageInfo.AutoSize = true;
+			this.lblPageInfo.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+			this.lblPageInfo.Location = new System.Drawing.Point(130, 14);
+			this.lblPageInfo.Name = "lblPageInfo";
+			this.lblPageInfo.Size = new System.Drawing.Size(94, 21);
+			this.lblPageInfo.TabIndex = 1;
+			this.lblPageInfo.Text = "Page 1 of 1";
+			// 
+			// btnNext
+			// 
+			this.btnNext.Location = new System.Drawing.Point(240, 10);
+			this.btnNext.Name = "btnNext";
+			this.btnNext.Size = new System.Drawing.Size(90, 30);
+			this.btnNext.TabIndex = 2;
+			this.btnNext.Text = "Next >";
+			this.btnNext.UseVisualStyleBackColor = true;
+			this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
 			// 
 			// uSales
 			// 
@@ -195,6 +242,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
 			this.Controls.Add(this.dgvSales);
+			this.Controls.Add(this.panelBottomPagination);
 			this.Controls.Add(this.panelTopBar);
 			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "uSales";
@@ -203,6 +251,8 @@
 			this.panelTopBar.ResumeLayout(false);
 			this.panelTopBar.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvSales)).EndInit();
+			this.panelBottomPagination.ResumeLayout(false);
+			this.panelBottomPagination.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -218,5 +268,9 @@
 		private System.Windows.Forms.DataGridView dgvSales;
 		private System.Windows.Forms.Button btnRefresh;
 		public System.Windows.Forms.TextBox txtFilterInput;
+		public System.Windows.Forms.Panel panelBottomPagination;
+		public System.Windows.Forms.Button btnPrev;
+		public System.Windows.Forms.Label lblPageInfo;
+		public System.Windows.Forms.Button btnNext;
 	}
 }

@@ -54,6 +54,7 @@ namespace key_luxery1
 			pnlInvoice.Visible = false;
 			pnlPayment.Visible = false;
 			pnlProducts.Visible = false;
+			pnlCustomer.Visible = false;
 		}
 
 		private void BtnDashboard_Click(object sender, EventArgs e)
@@ -118,8 +119,7 @@ namespace key_luxery1
 		{
 			HideAllIndicators();
 			ShowControl(uCustomer1);
-			pnlInvoice.Visible = true;
-			ShowControl(uInvoice1);
+			pnlCustomer.Visible = true;
 		}
 
 		private void BtnSidebar_Click(object sender, EventArgs e)
@@ -148,6 +148,18 @@ namespace key_luxery1
 		}
 
 		private void frmDashboard_FormClosed(object sender, FormClosedEventArgs e)
+		{
+
+		}
+
+		private void btnInvoice_Click(object sender, EventArgs e)
+		{
+			HideAllIndicators();
+			ShowControl(uInvoice1);
+			pnlInvoice.Visible = true;
+		}
+
+		private void panel3_Paint(object sender, PaintEventArgs e)
 		{
 
 		}

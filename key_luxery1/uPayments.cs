@@ -24,7 +24,7 @@ namespace key_luxery1
 		{
 			try
 			{
-				string query = "SELECT payment_id AS [Payment ID], invoice_id AS [Invoice ID], amount_paid AS [Amount Paid], payment_method AS [Method], reference_no AS [Reference], payment_date AS [Payment Date] FROM tblPayment WHERE 1=1";
+				string query = "SELECT payment_id AS [Payment ID], invoice_id AS [Invoice ID], amount_paid AS [Amount Paid], payment_method AS [Method], reference_no AS [Reference], payment_date AS [Payment Date], Status FROM tblPayment WHERE 1=1";
 
 				if (!string.IsNullOrEmpty(searchKeyword))
 				{

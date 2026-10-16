@@ -125,6 +125,7 @@
 			this.TxtPassword.PasswordChar = '●';
 			this.TxtPassword.Size = new System.Drawing.Size(325, 31);
 			this.TxtPassword.TabIndex = 4;
+			this.TxtPassword.UseSystemPasswordChar = true;
 			// 
 			// chkShowPassword
 			// 

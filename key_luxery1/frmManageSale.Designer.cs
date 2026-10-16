@@ -2,8 +2,15 @@
 {
 	partial class frmManageSale
 	{
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
 		private System.ComponentModel.IContainer components = null;
 
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing && (components != null))
@@ -15,6 +22,10 @@
 
 		#region Windows Form Designer generated code
 
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
 		private void InitializeComponent()
 		{
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -22,10 +33,14 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmManageSale));
 			this.lblTitle = new System.Windows.Forms.Label();
 			this.grpCustomerInfo = new System.Windows.Forms.GroupBox();
+			this.lblCustomerPhoneSearch = new System.Windows.Forms.Label();
+			this.txtSearchCustomerPhone = new System.Windows.Forms.TextBox();
+			this.btnFindCustomer = new System.Windows.Forms.Button();
 			this.lblInvoiceId = new System.Windows.Forms.Label();
 			this.txtInvoiceId = new System.Windows.Forms.TextBox();
 			this.lblInvoiceNo = new System.Windows.Forms.Label();
 			this.txtInvoiceNo = new System.Windows.Forms.TextBox();
+			this.txtCustomer_name = new System.Windows.Forms.TextBox();
 			this.lblCustomer = new System.Windows.Forms.Label();
 			this.lblSaleDate = new System.Windows.Forms.Label();
 			this.dtpSaleDate = new System.Windows.Forms.DateTimePicker();
@@ -43,21 +58,23 @@
 			this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.colSubtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.grpSummary = new System.Windows.Forms.GroupBox();
+			this.lblTax = new System.Windows.Forms.Label();
+			this.txtTax = new System.Windows.Forms.TextBox();
 			this.lblDiscount = new System.Windows.Forms.Label();
 			this.txtDiscount = new System.Windows.Forms.TextBox();
 			this.lblPaymentMethod = new System.Windows.Forms.Label();
 			this.cmbPaymentMethod = new System.Windows.Forms.ComboBox();
 			this.lblGrandTotalTitle = new System.Windows.Forms.Label();
 			this.lblGrandTotalValue = new System.Windows.Forms.Label();
-			this.btnCompleteSale = new System.Windows.Forms.Button();
-			this.btnRemoveItem = new System.Windows.Forms.Button();
 			this.btnClearCart = new System.Windows.Forms.Button();
-			this.btnCancel = new System.Windows.Forms.Button();
+			this.btnRemoveItem = new System.Windows.Forms.Button();
+			this.btnSaveOnly = new System.Windows.Forms.Button();
+			this.btnSaveAndPrint = new System.Windows.Forms.Button();
+			this.btnCloseForm = new System.Windows.Forms.Button();
 			this.printDocument1 = new System.Drawing.Printing.PrintDocument();
 			this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
 			this.txtcustomer_id = new System.Windows.Forms.TextBox();
 			this.txtProduct_name = new System.Windows.Forms.TextBox();
-			this.txtCustomer_name = new System.Windows.Forms.TextBox();
 			this.grpCustomerInfo.SuspendLayout();
 			this.grpItemSelection.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvCart)).BeginInit();
@@ -77,6 +94,9 @@
 			// 
 			// grpCustomerInfo
 			// 
+			this.grpCustomerInfo.Controls.Add(this.lblCustomerPhoneSearch);
+			this.grpCustomerInfo.Controls.Add(this.txtSearchCustomerPhone);
+			this.grpCustomerInfo.Controls.Add(this.btnFindCustomer);
 			this.grpCustomerInfo.Controls.Add(this.lblInvoiceId);
 			this.grpCustomerInfo.Controls.Add(this.txtInvoiceId);
 			this.grpCustomerInfo.Controls.Add(this.lblInvoiceNo);
@@ -88,16 +108,49 @@
 			this.grpCustomerInfo.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
 			this.grpCustomerInfo.Location = new System.Drawing.Point(25, 65);
 			this.grpCustomerInfo.Name = "grpCustomerInfo";
-			this.grpCustomerInfo.Size = new System.Drawing.Size(430, 210);
+			this.grpCustomerInfo.Size = new System.Drawing.Size(430, 240);
 			this.grpCustomerInfo.TabIndex = 1;
 			this.grpCustomerInfo.TabStop = false;
 			this.grpCustomerInfo.Text = "Invoice & Customer Information";
+			// 
+			// lblCustomerPhoneSearch
+			// 
+			this.lblCustomerPhoneSearch.AutoSize = true;
+			this.lblCustomerPhoneSearch.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+			this.lblCustomerPhoneSearch.Location = new System.Drawing.Point(20, 32);
+			this.lblCustomerPhoneSearch.Name = "lblCustomerPhoneSearch";
+			this.lblCustomerPhoneSearch.Size = new System.Drawing.Size(99, 21);
+			this.lblCustomerPhoneSearch.TabIndex = 0;
+			this.lblCustomerPhoneSearch.Text = "Cust. Phone :";
+			// 
+			// txtSearchCustomerPhone
+			// 
+			this.txtSearchCustomerPhone.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+			this.txtSearchCustomerPhone.Location = new System.Drawing.Point(145, 29);
+			this.txtSearchCustomerPhone.Name = "txtSearchCustomerPhone";
+			this.txtSearchCustomerPhone.Size = new System.Drawing.Size(150, 29);
+			this.txtSearchCustomerPhone.TabIndex = 0;
+			// 
+			// btnFindCustomer
+			// 
+			this.btnFindCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+			this.btnFindCustomer.FlatAppearance.BorderSize = 0;
+			this.btnFindCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnFindCustomer.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+			this.btnFindCustomer.ForeColor = System.Drawing.Color.White;
+			this.btnFindCustomer.Location = new System.Drawing.Point(301, 29);
+			this.btnFindCustomer.Name = "btnFindCustomer";
+			this.btnFindCustomer.Size = new System.Drawing.Size(99, 29);
+			this.btnFindCustomer.TabIndex = 1;
+			this.btnFindCustomer.Text = "Find Cust";
+			this.btnFindCustomer.UseVisualStyleBackColor = false;
+			this.btnFindCustomer.Click += new System.EventHandler(this.btnFindCustomer_Click);
 			// 
 			// lblInvoiceId
 			// 
 			this.lblInvoiceId.AutoSize = true;
 			this.lblInvoiceId.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.lblInvoiceId.Location = new System.Drawing.Point(20, 30);
+			this.lblInvoiceId.Location = new System.Drawing.Point(20, 72);
 			this.lblInvoiceId.Name = "lblInvoiceId";
 			this.lblInvoiceId.Size = new System.Drawing.Size(85, 21);
 			this.lblInvoiceId.TabIndex = 0;
@@ -107,16 +160,16 @@
 			// 
 			this.txtInvoiceId.Enabled = false;
 			this.txtInvoiceId.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.txtInvoiceId.Location = new System.Drawing.Point(145, 27);
+			this.txtInvoiceId.Location = new System.Drawing.Point(145, 69);
 			this.txtInvoiceId.Name = "txtInvoiceId";
 			this.txtInvoiceId.Size = new System.Drawing.Size(255, 29);
-			this.txtInvoiceId.TabIndex = 0;
+			this.txtInvoiceId.TabIndex = 2;
 			// 
 			// lblInvoiceNo
 			// 
 			this.lblInvoiceNo.AutoSize = true;
 			this.lblInvoiceNo.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.lblInvoiceNo.Location = new System.Drawing.Point(20, 68);
+			this.lblInvoiceNo.Location = new System.Drawing.Point(20, 110);
 			this.lblInvoiceNo.Name = "lblInvoiceNo";
 			this.lblInvoiceNo.Size = new System.Drawing.Size(91, 21);
 			this.lblInvoiceNo.TabIndex = 0;
@@ -126,16 +179,25 @@
 			// 
 			this.txtInvoiceNo.Enabled = false;
 			this.txtInvoiceNo.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.txtInvoiceNo.Location = new System.Drawing.Point(145, 65);
+			this.txtInvoiceNo.Location = new System.Drawing.Point(145, 107);
 			this.txtInvoiceNo.Name = "txtInvoiceNo";
 			this.txtInvoiceNo.Size = new System.Drawing.Size(255, 29);
-			this.txtInvoiceNo.TabIndex = 1;
+			this.txtInvoiceNo.TabIndex = 3;
+			// 
+			// txtCustomer_name
+			// 
+			this.txtCustomer_name.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+			this.txtCustomer_name.Location = new System.Drawing.Point(145, 145);
+			this.txtCustomer_name.Name = "txtCustomer_name";
+			this.txtCustomer_name.Size = new System.Drawing.Size(255, 29);
+			this.txtCustomer_name.TabIndex = 4;
+			this.txtCustomer_name.TextChanged += new System.EventHandler(this.txtCustomerPhone_TextChanged);
 			// 
 			// lblCustomer
 			// 
 			this.lblCustomer.AutoSize = true;
 			this.lblCustomer.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.lblCustomer.Location = new System.Drawing.Point(20, 117);
+			this.lblCustomer.Location = new System.Drawing.Point(20, 148);
 			this.lblCustomer.Name = "lblCustomer";
 			this.lblCustomer.Size = new System.Drawing.Size(85, 21);
 			this.lblCustomer.TabIndex = 0;
@@ -145,7 +207,7 @@
 			// 
 			this.lblSaleDate.AutoSize = true;
 			this.lblSaleDate.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.lblSaleDate.Location = new System.Drawing.Point(20, 156);
+			this.lblSaleDate.Location = new System.Drawing.Point(20, 188);
 			this.lblSaleDate.Name = "lblSaleDate";
 			this.lblSaleDate.Size = new System.Drawing.Size(82, 21);
 			this.lblSaleDate.TabIndex = 0;
@@ -155,10 +217,10 @@
 			// 
 			this.dtpSaleDate.Font = new System.Drawing.Font("Segoe UI", 9.5F);
 			this.dtpSaleDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-			this.dtpSaleDate.Location = new System.Drawing.Point(145, 153);
+			this.dtpSaleDate.Location = new System.Drawing.Point(145, 185);
 			this.dtpSaleDate.Name = "dtpSaleDate";
 			this.dtpSaleDate.Size = new System.Drawing.Size(255, 29);
-			this.dtpSaleDate.TabIndex = 4;
+			this.dtpSaleDate.TabIndex = 5;
 			// 
 			// grpItemSelection
 			// 
@@ -169,9 +231,9 @@
 			this.grpItemSelection.Controls.Add(this.txtQuantity);
 			this.grpItemSelection.Controls.Add(this.btnAddItem);
 			this.grpItemSelection.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-			this.grpItemSelection.Location = new System.Drawing.Point(25, 291);
+			this.grpItemSelection.Location = new System.Drawing.Point(25, 315);
 			this.grpItemSelection.Name = "grpItemSelection";
-			this.grpItemSelection.Size = new System.Drawing.Size(430, 130);
+			this.grpItemSelection.Size = new System.Drawing.Size(430, 120);
 			this.grpItemSelection.TabIndex = 2;
 			this.grpItemSelection.TabStop = false;
 			this.grpItemSelection.Text = "Search Product & Quantity";
@@ -180,7 +242,7 @@
 			// 
 			this.lblProduct.AutoSize = true;
 			this.lblProduct.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.lblProduct.Location = new System.Drawing.Point(20, 35);
+			this.lblProduct.Location = new System.Drawing.Point(20, 32);
 			this.lblProduct.Name = "lblProduct";
 			this.lblProduct.Size = new System.Drawing.Size(71, 21);
 			this.lblProduct.TabIndex = 0;
@@ -189,7 +251,7 @@
 			// txtSearchProduct
 			// 
 			this.txtSearchProduct.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.txtSearchProduct.Location = new System.Drawing.Point(145, 32);
+			this.txtSearchProduct.Location = new System.Drawing.Point(145, 29);
 			this.txtSearchProduct.Name = "txtSearchProduct";
 			this.txtSearchProduct.Size = new System.Drawing.Size(150, 29);
 			this.txtSearchProduct.TabIndex = 0;
@@ -201,7 +263,7 @@
 			this.btnFindProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnFindProduct.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
 			this.btnFindProduct.ForeColor = System.Drawing.Color.White;
-			this.btnFindProduct.Location = new System.Drawing.Point(301, 32);
+			this.btnFindProduct.Location = new System.Drawing.Point(301, 29);
 			this.btnFindProduct.Name = "btnFindProduct";
 			this.btnFindProduct.Size = new System.Drawing.Size(99, 29);
 			this.btnFindProduct.TabIndex = 1;
@@ -213,7 +275,7 @@
 			// 
 			this.lblQty.AutoSize = true;
 			this.lblQty.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.lblQty.Location = new System.Drawing.Point(20, 75);
+			this.lblQty.Location = new System.Drawing.Point(20, 72);
 			this.lblQty.Name = "lblQty";
 			this.lblQty.Size = new System.Drawing.Size(77, 21);
 			this.lblQty.TabIndex = 0;
@@ -222,7 +284,7 @@
 			// txtQuantity
 			// 
 			this.txtQuantity.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.txtQuantity.Location = new System.Drawing.Point(145, 72);
+			this.txtQuantity.Location = new System.Drawing.Point(145, 69);
 			this.txtQuantity.Name = "txtQuantity";
 			this.txtQuantity.Size = new System.Drawing.Size(90, 29);
 			this.txtQuantity.TabIndex = 2;
@@ -235,7 +297,7 @@
 			this.btnAddItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnAddItem.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
 			this.btnAddItem.ForeColor = System.Drawing.Color.White;
-			this.btnAddItem.Location = new System.Drawing.Point(241, 70);
+			this.btnAddItem.Location = new System.Drawing.Point(241, 67);
 			this.btnAddItem.Name = "btnAddItem";
 			this.btnAddItem.Size = new System.Drawing.Size(159, 32);
 			this.btnAddItem.TabIndex = 3;
@@ -282,7 +344,7 @@
 			this.dgvCart.RowHeadersWidth = 51;
 			this.dgvCart.RowTemplate.Height = 30;
 			this.dgvCart.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgvCart.Size = new System.Drawing.Size(585, 490);
+			this.dgvCart.Size = new System.Drawing.Size(585, 510);
 			this.dgvCart.TabIndex = 3;
 			// 
 			// colProductID
@@ -323,6 +385,8 @@
 			// 
 			// grpSummary
 			// 
+			this.grpSummary.Controls.Add(this.lblTax);
+			this.grpSummary.Controls.Add(this.txtTax);
 			this.grpSummary.Controls.Add(this.lblDiscount);
 			this.grpSummary.Controls.Add(this.txtDiscount);
 			this.grpSummary.Controls.Add(this.lblPaymentMethod);
@@ -330,18 +394,37 @@
 			this.grpSummary.Controls.Add(this.lblGrandTotalTitle);
 			this.grpSummary.Controls.Add(this.lblGrandTotalValue);
 			this.grpSummary.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-			this.grpSummary.Location = new System.Drawing.Point(25, 445);
+			this.grpSummary.Location = new System.Drawing.Point(25, 442);
 			this.grpSummary.Name = "grpSummary";
-			this.grpSummary.Size = new System.Drawing.Size(430, 165);
+			this.grpSummary.Size = new System.Drawing.Size(430, 195);
 			this.grpSummary.TabIndex = 4;
 			this.grpSummary.TabStop = false;
 			this.grpSummary.Text = "Payment & Total Summary";
+			// 
+			// lblTax
+			// 
+			this.lblTax.AutoSize = true;
+			this.lblTax.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+			this.lblTax.Location = new System.Drawing.Point(20, 32);
+			this.lblTax.Name = "lblTax";
+			this.lblTax.Size = new System.Drawing.Size(38, 21);
+			this.lblTax.TabIndex = 0;
+			this.lblTax.Text = "Tax :";
+			// 
+			// txtTax
+			// 
+			this.txtTax.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+			this.txtTax.Location = new System.Drawing.Point(151, 29);
+			this.txtTax.Name = "txtTax";
+			this.txtTax.Size = new System.Drawing.Size(249, 29);
+			this.txtTax.TabIndex = 0;
+			this.txtTax.Text = "0";
 			// 
 			// lblDiscount
 			// 
 			this.lblDiscount.AutoSize = true;
 			this.lblDiscount.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.lblDiscount.Location = new System.Drawing.Point(20, 35);
+			this.lblDiscount.Location = new System.Drawing.Point(20, 70);
 			this.lblDiscount.Name = "lblDiscount";
 			this.lblDiscount.Size = new System.Drawing.Size(78, 21);
 			this.lblDiscount.TabIndex = 0;
@@ -350,10 +433,10 @@
 			// txtDiscount
 			// 
 			this.txtDiscount.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.txtDiscount.Location = new System.Drawing.Point(151, 32);
+			this.txtDiscount.Location = new System.Drawing.Point(151, 67);
 			this.txtDiscount.Name = "txtDiscount";
 			this.txtDiscount.Size = new System.Drawing.Size(249, 29);
-			this.txtDiscount.TabIndex = 0;
+			this.txtDiscount.TabIndex = 1;
 			this.txtDiscount.Text = "0";
 			this.txtDiscount.TextChanged += new System.EventHandler(this.txtDiscount_TextChanged);
 			// 
@@ -361,7 +444,7 @@
 			// 
 			this.lblPaymentMethod.AutoSize = true;
 			this.lblPaymentMethod.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.lblPaymentMethod.Location = new System.Drawing.Point(20, 75);
+			this.lblPaymentMethod.Location = new System.Drawing.Point(20, 108);
 			this.lblPaymentMethod.Name = "lblPaymentMethod";
 			this.lblPaymentMethod.Size = new System.Drawing.Size(113, 21);
 			this.lblPaymentMethod.TabIndex = 0;
@@ -376,10 +459,10 @@
             "Credit Card",
             "Bank Transfer",
             "Store Credit"});
-			this.cmbPaymentMethod.Location = new System.Drawing.Point(151, 72);
+			this.cmbPaymentMethod.Location = new System.Drawing.Point(151, 105);
 			this.cmbPaymentMethod.Name = "cmbPaymentMethod";
 			this.cmbPaymentMethod.Size = new System.Drawing.Size(249, 29);
-			this.cmbPaymentMethod.TabIndex = 1;
+			this.cmbPaymentMethod.TabIndex = 2;
 			this.cmbPaymentMethod.Text = "Cash";
 			// 
 			// lblGrandTotalTitle
@@ -387,7 +470,7 @@
 			this.lblGrandTotalTitle.AutoSize = true;
 			this.lblGrandTotalTitle.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
 			this.lblGrandTotalTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-			this.lblGrandTotalTitle.Location = new System.Drawing.Point(20, 118);
+			this.lblGrandTotalTitle.Location = new System.Drawing.Point(20, 150);
 			this.lblGrandTotalTitle.Name = "lblGrandTotalTitle";
 			this.lblGrandTotalTitle.Size = new System.Drawing.Size(126, 25);
 			this.lblGrandTotalTitle.TabIndex = 0;
@@ -397,42 +480,12 @@
 			// 
 			this.lblGrandTotalValue.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
 			this.lblGrandTotalValue.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-			this.lblGrandTotalValue.Location = new System.Drawing.Point(145, 112);
+			this.lblGrandTotalValue.Location = new System.Drawing.Point(145, 144);
 			this.lblGrandTotalValue.Name = "lblGrandTotalValue";
 			this.lblGrandTotalValue.Size = new System.Drawing.Size(255, 35);
-			this.lblGrandTotalValue.TabIndex = 2;
+			this.lblGrandTotalValue.TabIndex = 3;
 			this.lblGrandTotalValue.Text = "$0.00";
 			this.lblGrandTotalValue.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			// 
-			// btnCompleteSale
-			// 
-			this.btnCompleteSale.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-			this.btnCompleteSale.FlatAppearance.BorderSize = 0;
-			this.btnCompleteSale.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnCompleteSale.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-			this.btnCompleteSale.ForeColor = System.Drawing.Color.White;
-			this.btnCompleteSale.Location = new System.Drawing.Point(905, 570);
-			this.btnCompleteSale.Name = "btnCompleteSale";
-			this.btnCompleteSale.Size = new System.Drawing.Size(155, 42);
-			this.btnCompleteSale.TabIndex = 5;
-			this.btnCompleteSale.Text = "Complete & Print";
-			this.btnCompleteSale.UseVisualStyleBackColor = false;
-			this.btnCompleteSale.Click += new System.EventHandler(this.btnCompleteSale_Click);
-			// 
-			// btnRemoveItem
-			// 
-			this.btnRemoveItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
-			this.btnRemoveItem.FlatAppearance.BorderSize = 0;
-			this.btnRemoveItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnRemoveItem.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
-			this.btnRemoveItem.ForeColor = System.Drawing.Color.White;
-			this.btnRemoveItem.Location = new System.Drawing.Point(755, 570);
-			this.btnRemoveItem.Name = "btnRemoveItem";
-			this.btnRemoveItem.Size = new System.Drawing.Size(140, 42);
-			this.btnRemoveItem.TabIndex = 6;
-			this.btnRemoveItem.Text = "Remove Item";
-			this.btnRemoveItem.UseVisualStyleBackColor = false;
-			this.btnRemoveItem.Click += new System.EventHandler(this.btnRemoveItem_Click);
 			// 
 			// btnClearCart
 			// 
@@ -441,28 +494,73 @@
 			this.btnClearCart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnClearCart.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
 			this.btnClearCart.ForeColor = System.Drawing.Color.White;
-			this.btnClearCart.Location = new System.Drawing.Point(605, 570);
+			this.btnClearCart.Location = new System.Drawing.Point(475, 585);
 			this.btnClearCart.Name = "btnClearCart";
-			this.btnClearCart.Size = new System.Drawing.Size(140, 42);
+			this.btnClearCart.Size = new System.Drawing.Size(110, 42);
 			this.btnClearCart.TabIndex = 7;
 			this.btnClearCart.Text = "Clear Cart";
 			this.btnClearCart.UseVisualStyleBackColor = false;
 			this.btnClearCart.Click += new System.EventHandler(this.btnClearCart_Click);
 			// 
-			// btnCancel
+			// btnRemoveItem
 			// 
-			this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
-			this.btnCancel.FlatAppearance.BorderSize = 0;
-			this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
-			this.btnCancel.ForeColor = System.Drawing.Color.White;
-			this.btnCancel.Location = new System.Drawing.Point(475, 570);
-			this.btnCancel.Name = "btnCancel";
-			this.btnCancel.Size = new System.Drawing.Size(120, 42);
-			this.btnCancel.TabIndex = 8;
-			this.btnCancel.Text = "Cancel";
-			this.btnCancel.UseVisualStyleBackColor = false;
-			this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+			this.btnRemoveItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
+			this.btnRemoveItem.FlatAppearance.BorderSize = 0;
+			this.btnRemoveItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnRemoveItem.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+			this.btnRemoveItem.ForeColor = System.Drawing.Color.White;
+			this.btnRemoveItem.Location = new System.Drawing.Point(595, 585);
+			this.btnRemoveItem.Name = "btnRemoveItem";
+			this.btnRemoveItem.Size = new System.Drawing.Size(125, 42);
+			this.btnRemoveItem.TabIndex = 6;
+			this.btnRemoveItem.Text = "Remove Item";
+			this.btnRemoveItem.UseVisualStyleBackColor = false;
+			this.btnRemoveItem.Click += new System.EventHandler(this.btnRemoveItem_Click);
+			// 
+			// btnSaveOnly
+			// 
+			this.btnSaveOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+			this.btnSaveOnly.FlatAppearance.BorderSize = 0;
+			this.btnSaveOnly.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnSaveOnly.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+			this.btnSaveOnly.ForeColor = System.Drawing.Color.White;
+			this.btnSaveOnly.Location = new System.Drawing.Point(726, 585);
+			this.btnSaveOnly.Name = "btnSaveOnly";
+			this.btnSaveOnly.Size = new System.Drawing.Size(118, 42);
+			this.btnSaveOnly.TabIndex = 5;
+			this.btnSaveOnly.Text = "Save && Close";
+			this.btnSaveOnly.UseVisualStyleBackColor = false;
+			this.btnSaveOnly.Click += new System.EventHandler(this.btnSaveOnly_Click);
+			// 
+			// btnSaveAndPrint
+			// 
+			this.btnSaveAndPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+			this.btnSaveAndPrint.FlatAppearance.BorderSize = 0;
+			this.btnSaveAndPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnSaveAndPrint.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+			this.btnSaveAndPrint.ForeColor = System.Drawing.Color.White;
+			this.btnSaveAndPrint.Location = new System.Drawing.Point(850, 585);
+			this.btnSaveAndPrint.Name = "btnSaveAndPrint";
+			this.btnSaveAndPrint.Size = new System.Drawing.Size(125, 42);
+			this.btnSaveAndPrint.TabIndex = 6;
+			this.btnSaveAndPrint.Text = "Save && Print";
+			this.btnSaveAndPrint.UseVisualStyleBackColor = false;
+			this.btnSaveAndPrint.Click += new System.EventHandler(this.btnCompleteSale_Click);
+			// 
+			// btnCloseForm
+			// 
+			this.btnCloseForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(140)))), ((int)(((byte)(141)))));
+			this.btnCloseForm.FlatAppearance.BorderSize = 0;
+			this.btnCloseForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnCloseForm.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+			this.btnCloseForm.ForeColor = System.Drawing.Color.White;
+			this.btnCloseForm.Location = new System.Drawing.Point(985, 585);
+			this.btnCloseForm.Name = "btnCloseForm";
+			this.btnCloseForm.Size = new System.Drawing.Size(80, 42);
+			this.btnCloseForm.TabIndex = 7;
+			this.btnCloseForm.Text = "Cancel";
+			this.btnCloseForm.UseVisualStyleBackColor = false;
+			this.btnCloseForm.Click += new System.EventHandler(this.btnCancel_Click);
 			// 
 			// printDocument1
 			// 
@@ -478,6 +576,7 @@
 			this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
 			this.printPreviewDialog1.Name = "printPreviewDialog1";
 			this.printPreviewDialog1.Visible = false;
+			this.printPreviewDialog1.Load += new System.EventHandler(this.printPreviewDialog1_Load);
 			// 
 			// txtcustomer_id
 			// 
@@ -497,26 +596,18 @@
 			this.txtProduct_name.TabIndex = 0;
 			this.txtProduct_name.Visible = false;
 			// 
-			// txtCustomer_name
-			// 
-			this.txtCustomer_name.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.txtCustomer_name.Location = new System.Drawing.Point(145, 109);
-			this.txtCustomer_name.Name = "txtCustomer_name";
-			this.txtCustomer_name.Size = new System.Drawing.Size(255, 29);
-			this.txtCustomer_name.TabIndex = 2;
-			this.txtCustomer_name.TextChanged += new System.EventHandler(this.txtCustomerPhone_TextChanged);
-			// 
 			// frmManageSale
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
-			this.ClientSize = new System.Drawing.Size(1085, 635);
-			this.Controls.Add(this.btnCancel);
-			this.Controls.Add(this.txtProduct_name);
+			this.ClientSize = new System.Drawing.Size(1085, 650);
 			this.Controls.Add(this.btnClearCart);
 			this.Controls.Add(this.btnRemoveItem);
-			this.Controls.Add(this.btnCompleteSale);
+			this.Controls.Add(this.btnCloseForm);
+			this.Controls.Add(this.btnSaveAndPrint);
+			this.Controls.Add(this.btnSaveOnly);
+			this.Controls.Add(this.txtProduct_name);
 			this.Controls.Add(this.txtcustomer_id);
 			this.Controls.Add(this.grpSummary);
 			this.Controls.Add(this.dgvCart);
@@ -545,6 +636,9 @@
 
 		private System.Windows.Forms.Label lblTitle;
 		private System.Windows.Forms.GroupBox grpCustomerInfo;
+		private System.Windows.Forms.Label lblCustomerPhoneSearch;
+		public System.Windows.Forms.TextBox txtSearchCustomerPhone;
+		public System.Windows.Forms.Button btnFindCustomer;
 		private System.Windows.Forms.Label lblInvoiceId;
 		public System.Windows.Forms.TextBox txtInvoiceId;
 		private System.Windows.Forms.Label lblInvoiceNo;
@@ -561,16 +655,19 @@
 		public System.Windows.Forms.Button btnAddItem;
 		public System.Windows.Forms.DataGridView dgvCart;
 		private System.Windows.Forms.GroupBox grpSummary;
+		private System.Windows.Forms.Label lblTax;
+		public System.Windows.Forms.TextBox txtTax;
 		private System.Windows.Forms.Label lblDiscount;
 		public System.Windows.Forms.TextBox txtDiscount;
 		private System.Windows.Forms.Label lblPaymentMethod;
 		public System.Windows.Forms.ComboBox cmbPaymentMethod;
 		private System.Windows.Forms.Label lblGrandTotalTitle;
 		public System.Windows.Forms.Label lblGrandTotalValue;
-		public System.Windows.Forms.Button btnCompleteSale;
-		public System.Windows.Forms.Button btnRemoveItem;
 		public System.Windows.Forms.Button btnClearCart;
-		public System.Windows.Forms.Button btnCancel;
+		public System.Windows.Forms.Button btnSaveOnly;
+		public System.Windows.Forms.Button btnSaveAndPrint;
+		public System.Windows.Forms.Button btnCloseForm;
+		public System.Windows.Forms.Button btnRemoveItem;
 		private System.Drawing.Printing.PrintDocument printDocument1;
 		private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn colProductID;
