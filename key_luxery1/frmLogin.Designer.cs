@@ -181,6 +181,7 @@
 			this.btnConfig.TabIndex = 8;
 			this.btnConfig.Text = "⚙";
 			this.btnConfig.UseVisualStyleBackColor = false;
+			this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
 			// 
 			// frmLogin
 			// 

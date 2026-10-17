@@ -119,5 +119,10 @@ namespace key_luxery1
 		{
 			Application.Exit();
 		}
+
+		private void btnConfig_Click(object sender, EventArgs e)
+		{
+
+		}
 	}
 }
