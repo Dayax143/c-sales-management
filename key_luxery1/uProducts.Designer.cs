@@ -32,7 +32,6 @@
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.panelTopBar = new System.Windows.Forms.Panel();
 			this.btnDeleteSelected = new System.Windows.Forms.Button();
-			this.btnExport = new System.Windows.Forms.Button();
 			this.btnRefresh = new System.Windows.Forms.Button();
 			this.btnStock = new System.Windows.Forms.Button();
 			this.btnAddProduct = new System.Windows.Forms.Button();
@@ -40,13 +39,15 @@
 			this.lblCategoryFilter = new System.Windows.Forms.Label();
 			this.txtSearchFilter = new System.Windows.Forms.TextBox();
 			this.cmbFilterCategory = new System.Windows.Forms.ComboBox();
+			this.btnExport = new System.Windows.Forms.Button();
 			this.dgvProducts = new System.Windows.Forms.DataGridView();
 			this.chkSelect = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.panelBottomPagination = new System.Windows.Forms.Panel();
 			this.btnPrev = new System.Windows.Forms.Button();
 			this.lblPageInfo = new System.Windows.Forms.Label();
-			this.btnNext = new System.Windows.Forms.Button();
 			this.btnImport = new System.Windows.Forms.Button();
+			this.btnNext = new System.Windows.Forms.Button();
+			this.btnRecover = new System.Windows.Forms.Button();
 			this.panelTopBar.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
 			this.panelBottomPagination.SuspendLayout();
@@ -55,6 +56,7 @@
 			// panelTopBar
 			// 
 			this.panelTopBar.BackColor = System.Drawing.Color.White;
+			this.panelTopBar.Controls.Add(this.btnRecover);
 			this.panelTopBar.Controls.Add(this.btnDeleteSelected);
 			this.panelTopBar.Controls.Add(this.btnRefresh);
 			this.panelTopBar.Controls.Add(this.btnStock);
@@ -83,22 +85,6 @@
 			this.btnDeleteSelected.Text = "Delete Selected";
 			this.btnDeleteSelected.UseVisualStyleBackColor = false;
 			this.btnDeleteSelected.Click += new System.EventHandler(this.btnDeleteSelected_Click);
-			// 
-			// btnExport
-			// 
-			this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnExport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(126)))), ((int)(((byte)(34)))));
-			this.btnExport.FlatAppearance.BorderSize = 0;
-			this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnExport.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
-			this.btnExport.ForeColor = System.Drawing.Color.White;
-			this.btnExport.Location = new System.Drawing.Point(927, 10);
-			this.btnExport.Name = "btnExport";
-			this.btnExport.Size = new System.Drawing.Size(110, 35);
-			this.btnExport.TabIndex = 6;
-			this.btnExport.Text = "Export CSV";
-			this.btnExport.UseVisualStyleBackColor = false;
-			this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
 			// 
 			// btnRefresh
 			// 
@@ -189,6 +175,22 @@
 			this.cmbFilterCategory.Text = "All Categories";
 			this.cmbFilterCategory.SelectedIndexChanged += new System.EventHandler(this.cmbFilterCategory_SelectedIndexChanged);
 			// 
+			// btnExport
+			// 
+			this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnExport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(126)))), ((int)(((byte)(34)))));
+			this.btnExport.FlatAppearance.BorderSize = 0;
+			this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnExport.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+			this.btnExport.ForeColor = System.Drawing.Color.White;
+			this.btnExport.Location = new System.Drawing.Point(927, 10);
+			this.btnExport.Name = "btnExport";
+			this.btnExport.Size = new System.Drawing.Size(110, 35);
+			this.btnExport.TabIndex = 6;
+			this.btnExport.Text = "Export CSV";
+			this.btnExport.UseVisualStyleBackColor = false;
+			this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+			// 
 			// dgvProducts
 			// 
 			this.dgvProducts.AllowUserToAddRows = false;
@@ -267,16 +269,6 @@
 			this.lblPageInfo.TabIndex = 1;
 			this.lblPageInfo.Text = "Page 1 of 1";
 			// 
-			// btnNext
-			// 
-			this.btnNext.Location = new System.Drawing.Point(240, 10);
-			this.btnNext.Name = "btnNext";
-			this.btnNext.Size = new System.Drawing.Size(90, 30);
-			this.btnNext.TabIndex = 2;
-			this.btnNext.Text = "Next >";
-			this.btnNext.UseVisualStyleBackColor = true;
-			this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
-			// 
 			// btnImport
 			// 
 			this.btnImport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -292,6 +284,31 @@
 			this.btnImport.Text = "Import list";
 			this.btnImport.UseVisualStyleBackColor = false;
 			this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
+			// 
+			// btnNext
+			// 
+			this.btnNext.Location = new System.Drawing.Point(240, 10);
+			this.btnNext.Name = "btnNext";
+			this.btnNext.Size = new System.Drawing.Size(90, 30);
+			this.btnNext.TabIndex = 2;
+			this.btnNext.Text = "Next >";
+			this.btnNext.UseVisualStyleBackColor = true;
+			this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+			// 
+			// btnRecover
+			// 
+			this.btnRecover.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
+			this.btnRecover.FlatAppearance.BorderSize = 0;
+			this.btnRecover.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnRecover.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+			this.btnRecover.ForeColor = System.Drawing.Color.White;
+			this.btnRecover.Location = new System.Drawing.Point(491, 26);
+			this.btnRecover.Name = "btnRecover";
+			this.btnRecover.Size = new System.Drawing.Size(130, 35);
+			this.btnRecover.TabIndex = 7;
+			this.btnRecover.Text = "Recover";
+			this.btnRecover.UseVisualStyleBackColor = false;
+			this.btnRecover.Click += new System.EventHandler(this.btnRecover_Click);
 			// 
 			// uProducts
 			// 
@@ -336,5 +353,6 @@ public System.Windows.Forms.Panel panelBottomPagination;
 		public System.Windows.Forms.Button btnDeleteSelected;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn chkSelect;
 		private System.Windows.Forms.Button btnImport;
+		public System.Windows.Forms.Button btnRecover;
 	}
 }

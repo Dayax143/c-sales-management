@@ -320,24 +320,25 @@ namespace key_luxery1
 									string productName = row.Cell(1).Value.ToString();
 									string category = row.Cell(2).Value.ToString();
 
-									int quantity = int.TryParse(row.Cell(3).Value.ToString(), out int q) ? q : 0;
-									int barcode = int.TryParse(row.Cell(4).Value.ToString(), out int b) ? b : 0;
+									decimal price = decimal.TryParse(row.Cell(3).Value.ToString(), out decimal p) ? p : 0;
+									decimal unitCost = decimal.TryParse(row.Cell(4).Value.ToString(), out decimal uc) ? uc : 0;
 
-									decimal unitCost = decimal.TryParse(row.Cell(5).Value.ToString(), out decimal uc) ? uc : 0;
-									decimal price = decimal.TryParse(row.Cell(6).Value.ToString(), out decimal p) ? p : 0;
+									int quantity = int.TryParse(row.Cell(5).Value.ToString(), out int q) ? q : 0;
+									int barcode = int.TryParse(row.Cell(6).Value.ToString(), out int b) ? b : 0;
 
 									string status = row.Cell(7).Value.ToString();
 
 									string query = @"INSERT INTO tblProduct 
-													(product_name, category, quantity, barcode, UnitCost, price, status, date, deleted) 
-													VALUES 
-													('" + productName.Replace("'", "''") + "', '" +
-														  category.Replace("'", "''") + "', " +
-														  quantity + ", " +
-														  barcode + ", " +
-														  unitCost + ", " +
-														  price + ", '" +
-														  status.Replace("'", "''") + "', GETDATE(), 0)";
+									(product_name, category, price, UnitCost, quantity, barcode, status, date, deleted) 
+									VALUES 
+									('" + productName.Replace("'", "''") + "', '" +
+										  category.Replace("'", "''") + "', " +
+										  price + ", " +
+										  unitCost + ", " +
+										  quantity + ", " +
+										  barcode + ", '" + // Fixed the space inside the quote here
+										  status.Replace("'", "''") + "', GETDATE(), 0)";
+
 
 									db.ExecuteQueries(query);
 									successCount++;
@@ -361,6 +362,12 @@ namespace key_luxery1
 					}
 				}
 			}
+		}
+
+		private void btnRecover_Click(object sender, EventArgs e)
+		{
+			frmRecoverProduct recoverForm = new frmRecoverProduct();
+			recoverForm.ShowDialog();
 		}
 	}
 }

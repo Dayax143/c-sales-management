@@ -97,6 +97,12 @@
     <Compile Include="frmDashboard.Designer.cs">
       <DependentUpon>frmDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmExpense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmExpense.Designer.cs">
+      <DependentUpon>frmExpense.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmManageInvoice.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +150,12 @@
     </Compile>
     <Compile Include="frmNewSale.Designer.cs">
       <DependentUpon>frmNewSale.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRecoverProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRecoverProduct.Designer.cs">
+      <DependentUpon>frmRecoverProduct.cs</DependentUpon>
     </Compile>
     <Compile Include="frmReport.cs">
       <SubType>Form</SubType>
@@ -226,6 +238,9 @@
     <EmbeddedResource Include="frmDashboard.resx">
       <DependentUpon>frmDashboard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmExpense.resx">
+      <DependentUpon>frmExpense.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmManageCustomer.resx">
       <DependentUpon>frmManageCustomer.cs</DependentUpon>
     </EmbeddedResource>
@@ -249,6 +264,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmNewSale.resx">
       <DependentUpon>frmNewSale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRecoverProduct.resx">
+      <DependentUpon>frmRecoverProduct.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmReport.resx">
       <DependentUpon>frmReport.cs</DependentUpon>

@@ -54,6 +54,7 @@ namespace key_luxery1
 			pnlInvoice.Visible = false;
 			pnlPayment.Visible = false;
 			pnlProducts.Visible = false;
+			pnlExpense.Visible = false;
 			pnlCustomer.Visible = false;
 		}
 
@@ -162,6 +163,14 @@ namespace key_luxery1
 		private void panel3_Paint(object sender, PaintEventArgs e)
 		{
 
+		}
+
+		private void btnExpense_Click(object sender, EventArgs e)
+		{
+			frmExpense frmExpense	= new frmExpense();
+			frmExpense.Show();
+			HideAllIndicators();
+			pnlExpense.Visible = true;
 		}
 	}
 }
