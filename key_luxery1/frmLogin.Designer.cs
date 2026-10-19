@@ -122,7 +122,6 @@
 			this.TxtPassword.Font = new System.Drawing.Font("Segoe UI", 10.5F);
 			this.TxtPassword.Location = new System.Drawing.Point(310, 198);
 			this.TxtPassword.Name = "TxtPassword";
-			this.TxtPassword.PasswordChar = '●';
 			this.TxtPassword.Size = new System.Drawing.Size(325, 31);
 			this.TxtPassword.TabIndex = 4;
 			this.TxtPassword.UseSystemPasswordChar = true;
@@ -220,9 +219,9 @@
 		public System.Windows.Forms.TextBox TxtUser;
 		private System.Windows.Forms.Label lblPass;
 		public System.Windows.Forms.TextBox TxtPassword;
-		private System.Windows.Forms.CheckBox chkShowPassword;
 		public System.Windows.Forms.Button btnLogin;
 		public System.Windows.Forms.Button btnExit;
 		public System.Windows.Forms.Button btnConfig;
+		public System.Windows.Forms.CheckBox chkShowPassword;
 	}
 }

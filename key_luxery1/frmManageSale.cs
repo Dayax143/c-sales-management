@@ -95,9 +95,26 @@ namespace key_luxery1
 				}
 				else
 				{
-					MessageBox.Show("No active customer found with that phone number.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
-					txtcustomer_id.Clear();
-					txtCustomer_name.Clear();
+					DialogResult dialog = MessageBox.Show("No active customer found with that phone number, register now !", "Not Found", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+					if (dialog == DialogResult.Yes)
+					{
+						if (txtCustomer_name.Text == "")
+						{
+							MessageBox.Show("Please enter the customer name to register now");
+						}
+						else
+						{
+							query = $"Insert into tblCustomer (customer_phone,customer_name,deleted,status,date) values({txtSearchCustomerPhone.Text},'{txtCustomer_name.Text}',0,'start',GetDate())";
+							db.ExecuteQueries(query);
+							MessageBox.Show("Successfully registered");
+						}
+					}
+					else if (dialog == DialogResult.No)
+					{
+						txtcustomer_id.Clear();
+						txtCustomer_name.Clear();
+						txtSearchCustomerPhone.Clear();
+					}
 				}
 			}
 			catch (Exception ex)
@@ -543,6 +560,11 @@ namespace key_luxery1
 		private void printPreviewDialog1_Load(object sender, EventArgs e)
 		{
 
+		}
+
+		private void txtSearchCustomerPhone_TextChanged(object sender, EventArgs e)
+		{
+			//LoadCustomers();
 		}
 	}
 }

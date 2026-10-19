@@ -25,12 +25,14 @@ namespace key_luxery1
 			InitializeComponent();
 
 			// Configure Print Document
-			printDoc.DefaultPageSettings.Landscape = true; // Use Landscape mode for rich data fit
+			printDoc.DefaultPageSettings.Landscape = true; // Use Landscape for optimal column layout
+			printDoc.BeginPrint += new PrintEventHandler(PrintDocument_BeginPrint);
 			printDoc.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
 		}
 
 		private void frmReport_Load(object sender, EventArgs e)
 		{
+			// Default Date Range: Start of current month to today
 			dtpStartDate.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
 			dtpEndDate.Value = DateTime.Now;
 
@@ -238,194 +240,239 @@ namespace key_luxery1
 		}
 
 		// ----------------------------------------------------
-		// ADVANCED PRINT & PREVIEW WITH DYNAMIC COLUMN FIT
+		// STANDARDIZED PRINT & PRINT PREVIEW IMPLEMENTATION
 		// ----------------------------------------------------
 		private void btnPrint_Click(object sender, EventArgs e)
 		{
-			if (dgvReports.Rows.Count == 0)
+			try
 			{
-				MessageBox.Show("No data available to print.", "Print Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-				return;
-			}
+				if (dgvReports.Rows.Count == 0)
+				{
+					MessageBox.Show("No data available to print.", "Print Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					return;
+				}
 
+				printPreviewDlg.Document = printDoc;
+				printPreviewDlg.Size = new Size(1100, 800);
+				printPreviewDlg.StartPosition = FormStartPosition.CenterScreen;
+				printPreviewDlg.ShowDialog();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Print Error: " + ex.Message, "Printing Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+
+		private void PrintDocument_BeginPrint(object sender, PrintEventArgs e)
+		{
+			// Reset page state every time printing begins or preview generates
 			currentPrintRow = 0;
 			pageNumber = 0;
-
-			printPreviewDlg.Document = printDoc;
-			printPreviewDlg.Size = new Size(1100, 800);
-			printPreviewDlg.StartPosition = FormStartPosition.CenterScreen;
-			printPreviewDlg.ShowDialog();
 		}
 
 		private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
 		{
-			pageNumber++;
-			Graphics g = e.Graphics;
-
-			// Fonts
-			Font mainTitleFont = new Font("Segoe UI", 16, FontStyle.Bold);
-			Font subTitleFont = new Font("Segoe UI", 10, FontStyle.Bold);
-			Font metaFont = new Font("Segoe UI", 8.5f, FontStyle.Regular);
-			Font headerFont = new Font("Segoe UI", 9, FontStyle.Bold);
-			Font bodyFont = new Font("Segoe UI", 8.5f, FontStyle.Regular);
-			Font summaryFont = new Font("Segoe UI", 9.5f, FontStyle.Bold);
-			Font sigFont = new Font("Segoe UI", 9, FontStyle.Bold);
-
-			// Page Layout Bounds
-			int margin = 40;
-			int printWidth = e.MarginBounds.Width + (margin * 2) - 80;
-			int startX = margin;
-			int currentY = margin;
-
-			// String Trimming & Formatting
-			StringFormat cellFormat = new StringFormat
+			try
 			{
-				Trimming = StringTrimming.EllipsisCharacter,
-				FormatFlags = StringFormatFlags.NoWrap,
-				LineAlignment = StringAlignment.Center
-			};
+				pageNumber++;
+				Graphics g = e.Graphics;
 
-			// 1. BRANDING & HEADER SECTION
-			g.DrawString("KEY LUXURY STORE", mainTitleFont, Brushes.Navy, startX, currentY);
-			currentY += 30;
+				// Typography & Styling Fonts
+				Font titleFont = new Font("Segoe UI", 16, FontStyle.Bold);
+				Font subTitleFont = new Font("Segoe UI", 10, FontStyle.Bold);
+				Font metaFont = new Font("Segoe UI", 8.5f, FontStyle.Regular);
+				Font headerFont = new Font("Segoe UI", 9, FontStyle.Bold);
+				Font bodyFont = new Font("Segoe UI", 8.5f, FontStyle.Regular);
+				Font summaryFont = new Font("Segoe UI", 9.5f, FontStyle.Bold);
+				Font sigFont = new Font("Segoe UI", 9, FontStyle.Bold);
 
-			g.DrawString("Official Report: " + cmbReportType.SelectedItem.ToString(), subTitleFont, Brushes.DarkSlateGray, startX, currentY);
-			string pageStr = "Page " + pageNumber;
-			g.DrawString(pageStr, metaFont, Brushes.Gray, startX + printWidth - g.MeasureString(pageStr, metaFont).Width, currentY);
-			currentY += 20;
+				// Safe Page Bounds calculation
+				int margin = 40;
+				int printWidth = Math.Max(400, e.PageBounds.Width - (margin * 2));
+				int printBottom = e.PageBounds.Height - margin;
+				int startX = margin;
+				int currentY = margin;
 
-			string dateRangeStr = "Period: " + dtpStartDate.Value.ToString("yyyy-MM-dd") + " to " + dtpEndDate.Value.ToString("yyyy-MM-dd");
-			g.DrawString(dateRangeStr, metaFont, Brushes.DimGray, startX, currentY);
-
-			string genDateStr = "Printed On: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm");
-			g.DrawString(genDateStr, metaFont, Brushes.DimGray, startX + printWidth - g.MeasureString(genDateStr, metaFont).Width, currentY);
-			currentY += 22;
-
-			// Header Divider Line
-			g.DrawLine(new Pen(Color.Navy, 2), startX, currentY, startX + printWidth, currentY);
-			currentY += 15;
-
-			// 2. CALCULATE DYNAMIC COLUMN WIDTHS (PREVENT OVERFLOW)
-			List<DataGridViewColumn> visibleCols = new List<DataGridViewColumn>();
-			foreach (DataGridViewColumn col in dgvReports.Columns)
-			{
-				if (col.Visible) visibleCols.Add(col);
-			}
-
-			Dictionary<int, int> colWidths = new Dictionary<int, int>();
-			float totalWeight = 0;
-
-			foreach (var col in visibleCols)
-			{
-				float weight = 1.0f;
-				if (col.Name.Contains("Product") || col.Name.Contains("Description")) weight = 2.2f;
-				else if (col.Name.Contains("Date")) weight = 1.6f;
-				else if (col.Name.Contains("Price") || col.Name.Contains("Amount") || col.Name.Contains("Total")) weight = 1.3f;
-				else if (col.Name.Contains("Qty") || col.Name.Contains("Returned")) weight = 0.8f;
-
-				totalWeight += weight;
-			}
-
-			int currentHeaderX = startX;
-			foreach (var col in visibleCols)
-			{
-				float weight = 1.0f;
-				if (col.Name.Contains("Product") || col.Name.Contains("Description")) weight = 2.2f;
-				else if (col.Name.Contains("Date")) weight = 1.6f;
-				else if (col.Name.Contains("Price") || col.Name.Contains("Amount") || col.Name.Contains("Total")) weight = 1.3f;
-				else if (col.Name.Contains("Qty") || col.Name.Contains("Returned")) weight = 0.8f;
-
-				int calculatedWidth = (int)((weight / totalWeight) * printWidth);
-				colWidths[col.Index] = calculatedWidth;
-			}
-
-			// 3. DRAW COLUMN HEADERS
-			g.FillRectangle(new SolidBrush(Color.FromArgb(41, 128, 185)), startX, currentY, printWidth, 26);
-
-			currentHeaderX = startX;
-			foreach (var col in visibleCols)
-			{
-				int w = colWidths[col.Index];
-				Rectangle headerRect = new Rectangle(currentHeaderX + 4, currentY, w - 8, 26);
-				g.DrawString(col.HeaderText, headerFont, Brushes.White, headerRect, cellFormat);
-				currentHeaderX += w;
-			}
-
-			currentY += 26;
-
-			// 4. DRAW ROWS
-			while (currentPrintRow < dgvReports.Rows.Count)
-			{
-				DataGridViewRow row = dgvReports.Rows[currentPrintRow];
-
-				// Check Page Bottom Boundary
-				if (currentY + 24 > e.MarginBounds.Bottom - 130)
+				// Formatting Rules
+				StringFormat cellFormatLeft = new StringFormat
 				{
-					e.HasMorePages = true;
+					Trimming = StringTrimming.EllipsisCharacter,
+					FormatFlags = StringFormatFlags.NoWrap,
+					LineAlignment = StringAlignment.Center,
+					Alignment = StringAlignment.Near
+				};
+
+				StringFormat cellFormatRight = new StringFormat
+				{
+					Trimming = StringTrimming.EllipsisCharacter,
+					FormatFlags = StringFormatFlags.NoWrap,
+					LineAlignment = StringAlignment.Center,
+					Alignment = StringAlignment.Far
+				};
+
+				// 1. BRANDING & HEADER SECTION
+				g.DrawString("KEY LUXURY STORE", titleFont, Brushes.Navy, startX, currentY);
+				currentY += 30;
+
+				string reportTitle = "Official Report: " + (cmbReportType.SelectedItem?.ToString() ?? "Report");
+				g.DrawString(reportTitle, subTitleFont, Brushes.DarkSlateGray, startX, currentY);
+
+				string pageStr = "Page " + pageNumber;
+				float pageStrWidth = g.MeasureString(pageStr, metaFont).Width;
+				g.DrawString(pageStr, metaFont, Brushes.Gray, startX + printWidth - Math.Max(50, (int)pageStrWidth), currentY);
+				currentY += 20;
+
+				string dateRangeStr = "Period: " + dtpStartDate.Value.ToString("yyyy-MM-dd") + " to " + dtpEndDate.Value.ToString("yyyy-MM-dd");
+				g.DrawString(dateRangeStr, metaFont, Brushes.DimGray, startX, currentY);
+
+				string genDateStr = "Printed On: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+				float genDateWidth = g.MeasureString(genDateStr, metaFont).Width;
+				g.DrawString(genDateStr, metaFont, Brushes.DimGray, startX + printWidth - Math.Max(120, (int)genDateWidth), currentY);
+				currentY += 22;
+
+				// Header Accent Line
+				g.DrawLine(new Pen(Color.Navy, 2), startX, currentY, startX + printWidth, currentY);
+				currentY += 15;
+
+				// 2. DYNAMIC COLUMN SIZING & PROPORTIONAL FITTING
+				List<DataGridViewColumn> visibleCols = new List<DataGridViewColumn>();
+				foreach (DataGridViewColumn col in dgvReports.Columns)
+				{
+					if (col.Visible) visibleCols.Add(col);
+				}
+
+				if (visibleCols.Count == 0)
+				{
+					e.HasMorePages = false;
 					return;
 				}
 
-				// Alternate Row Fill
-				if (currentPrintRow % 2 == 0)
+				Dictionary<int, int> colWidths = new Dictionary<int, int>();
+				float totalWeight = 0;
+
+				foreach (var col in visibleCols)
 				{
-					g.FillRectangle(new SolidBrush(Color.FromArgb(245, 247, 250)), startX, currentY, printWidth, 24);
+					float weight = 1.0f;
+					if (col.Name.Contains("Product") || col.Name.Contains("Description")) weight = 2.4f;
+					else if (col.Name.Contains("Date")) weight = 1.6f;
+					else if (col.Name.Contains("Price") || col.Name.Contains("Amount") || col.Name.Contains("Total") || col.Name.Contains("Sales") || col.Name.Contains("Expenses") || col.Name.Contains("NetProfit")) weight = 1.4f;
+					else if (col.Name.Contains("Qty") || col.Name.Contains("Returned")) weight = 0.8f;
+
+					totalWeight += weight;
 				}
 
-				int cellX = startX;
+				foreach (var col in visibleCols)
+				{
+					float weight = 1.0f;
+					if (col.Name.Contains("Product") || col.Name.Contains("Description")) weight = 2.4f;
+					else if (col.Name.Contains("Date")) weight = 1.6f;
+					else if (col.Name.Contains("Price") || col.Name.Contains("Amount") || col.Name.Contains("Total") || col.Name.Contains("Sales") || col.Name.Contains("Expenses") || col.Name.Contains("NetProfit")) weight = 1.4f;
+					else if (col.Name.Contains("Qty") || col.Name.Contains("Returned")) weight = 0.8f;
+
+					int calculatedWidth = (int)((weight / totalWeight) * printWidth);
+					colWidths[col.Index] = Math.Max(50, calculatedWidth); // Minimum 50px width per column
+				}
+
+				// 3. DRAW COLUMN HEADERS
+				g.FillRectangle(new SolidBrush(Color.FromArgb(41, 128, 185)), startX, currentY, printWidth, 26);
+
+				int currentHeaderX = startX;
 				foreach (var col in visibleCols)
 				{
 					int w = colWidths[col.Index];
-					string val = row.Cells[col.Index].FormattedValue?.ToString() ?? "";
+					Rectangle headerRect = new Rectangle(currentHeaderX + 2, currentY, Math.Max(10, w - 4), 26);
 
-					Rectangle cellRect = new Rectangle(cellX + 4, currentY, w - 8, 24);
-					g.DrawString(val, bodyFont, Brushes.Black, cellRect, cellFormat);
+					bool isNumeric = col.Name.Contains("Price") || col.Name.Contains("Amount") || col.Name.Contains("Total") || col.Name.Contains("Sales") || col.Name.Contains("Expenses") || col.Name.Contains("NetProfit") || col.Name.Contains("Qty");
+					g.DrawString(col.HeaderText, headerFont, Brushes.White, headerRect, isNumeric ? cellFormatRight : cellFormatLeft);
 
-					cellX += w;
+					currentHeaderX += w;
 				}
 
-				g.DrawLine(Pens.LightGray, startX, currentY + 24, startX + printWidth, currentY + 24);
-				currentY += 24;
-				currentPrintRow++;
+				currentY += 26;
+
+				// 4. DRAW DATA ROWS WITH PAGINATION
+				int rowHeight = 24;
+				while (currentPrintRow < dgvReports.Rows.Count)
+				{
+					DataGridViewRow row = dgvReports.Rows[currentPrintRow];
+
+					// Reserve space for summary block and signatures on the final page
+					if (currentY + rowHeight > printBottom - 160)
+					{
+						e.HasMorePages = true;
+						return;
+					}
+
+					// Alternate Row Colors
+					if (currentPrintRow % 2 == 0)
+					{
+						g.FillRectangle(new SolidBrush(Color.FromArgb(245, 247, 250)), startX, currentY, printWidth, rowHeight);
+					}
+
+					int cellX = startX;
+					foreach (var col in visibleCols)
+					{
+						int w = colWidths[col.Index];
+						string val = row.Cells[col.Index].FormattedValue?.ToString() ?? "";
+
+						Rectangle cellRect = new Rectangle(cellX + 2, currentY, Math.Max(10, w - 4), rowHeight);
+						bool isNumeric = col.Name.Contains("Price") || col.Name.Contains("Amount") || col.Name.Contains("Total") || col.Name.Contains("Sales") || col.Name.Contains("Expenses") || col.Name.Contains("NetProfit") || col.Name.Contains("Qty");
+
+						g.DrawString(val, bodyFont, Brushes.Black, cellRect, isNumeric ? cellFormatRight : cellFormatLeft);
+						cellX += w;
+					}
+
+					g.DrawLine(Pens.LightGray, startX, currentY + rowHeight, startX + printWidth, currentY + rowHeight);
+					currentY += rowHeight;
+					currentPrintRow++;
+				}
+
+				// 5. EXECUTIVE SUMMARY BLOCK (PRINTED ON LAST PAGE)
+				currentY += 15;
+
+				Rectangle summaryBox = new Rectangle(startX, currentY, printWidth, 42);
+				g.FillRectangle(new SolidBrush(Color.FromArgb(236, 240, 241)), summaryBox);
+				g.DrawRectangle(new Pen(Color.FromArgb(189, 195, 199), 1), summaryBox);
+
+				string textSales = "Revenue: " + lblTotalSalesVal.Text;
+				string textExp = "Expenses: " + lblTotalExpensesVal.Text;
+				string textProfit = "Net Profit: " + lblTotalProfitVal.Text;
+				string textRecords = "Records: " + lblTotalTransactionsVal.Text;
+
+				int spacing = printWidth / 4;
+				g.DrawString(textSales, summaryFont, Brushes.Navy, startX + 10, currentY + 11);
+				g.DrawString(textExp, summaryFont, Brushes.DarkRed, startX + spacing + 5, currentY + 11);
+				g.DrawString(textProfit, summaryFont, lblTotalProfitVal.ForeColor == Color.Red ? Brushes.Red : Brushes.ForestGreen, startX + (spacing * 2) + 5, currentY + 11);
+				g.DrawString(textRecords, summaryFont, Brushes.DarkSlateGray, startX + (spacing * 3) + 5, currentY + 11);
+
+				currentY += 65;
+
+				// 6. OFFICIAL KEY LUXURY SIGNATURE BLOCKS
+				int sigWidth = 220;
+				int prepX = startX + 30;
+				int apprX = startX + printWidth - sigWidth - 30;
+
+				// Prepared By
+				g.DrawLine(new Pen(Color.Black, 1.5f), prepX, currentY, prepX + sigWidth, currentY);
+				g.DrawString("PREPARED BY (Key Luxury)", sigFont, Brushes.Black, prepX + 15, currentY + 6);
+
+				// Approved By
+				g.DrawLine(new Pen(Color.Black, 1.5f), apprX, currentY, apprX + sigWidth, currentY);
+				g.DrawString("APPROVED BY (Key Luxury)", sigFont, Brushes.Black, apprX + 15, currentY + 6);
+
+				currentY += 35;
+				string footerMsg = "KEY LUXURY STORE • OFFICIAL CONFIDENTIAL REPORT";
+				Font footerFont = new Font("Segoe UI", 8, FontStyle.Bold);
+				float footerWidth = g.MeasureString(footerMsg, footerFont).Width;
+				float footerX = startX + Math.Max(0, (printWidth - (int)footerWidth) / 2);
+				g.DrawString(footerMsg, footerFont, Brushes.Gray, footerX, currentY);
+
+				e.HasMorePages = false;
 			}
-
-			// 5. DECORATED SUMMARY SECTION (AFTER ALL ROWS PRINT)
-			currentY += 15;
-
-			Rectangle summaryBox = new Rectangle(startX, currentY, printWidth, 40);
-			g.FillRectangle(new SolidBrush(Color.FromArgb(236, 240, 241)), summaryBox);
-			g.DrawRectangle(new Pen(Color.FromArgb(189, 195, 199), 1), summaryBox);
-
-			string textSales = "Total Revenue: " + lblTotalSalesVal.Text;
-			string textExp = "Expenses: " + lblTotalExpensesVal.Text;
-			string textProfit = "Net Profit: " + lblTotalProfitVal.Text;
-			string textRecords = "Records: " + lblTotalTransactionsVal.Text;
-
-			int spacing = printWidth / 4;
-			g.DrawString(textSales, summaryFont, Brushes.Navy, startX + 15, currentY + 10);
-			g.DrawString(textExp, summaryFont, Brushes.DarkRed, startX + spacing + 10, currentY + 10);
-			g.DrawString(textProfit, summaryFont, lblTotalProfitVal.ForeColor == Color.Red ? Brushes.Red : Brushes.ForestGreen, startX + (spacing * 2) + 10, currentY + 10);
-			g.DrawString(textRecords, summaryFont, Brushes.DarkSlateGray, startX + (spacing * 3) + 10, currentY + 10);
-
-			currentY += 60;
-
-			// 6. OFFICIAL KEY LUXURY SIGNATURE AREA
-			int sigWidth = 220;
-			int prepX = startX + 30;
-			int apprX = startX + printWidth - sigWidth - 30;
-
-			// Prepared By
-			g.DrawLine(new Pen(Color.Black, 1.5f), prepX, currentY, prepX + sigWidth, currentY);
-			g.DrawString("PREPARED BY (Key Luxury)", sigFont, Brushes.Black, prepX + 15, currentY + 6);
-
-			// Approved By
-			g.DrawLine(new Pen(Color.Black, 1.5f), apprX, currentY, apprX + sigWidth, currentY);
-			g.DrawString("APPROVED BY (Key Luxury)", sigFont, Brushes.Black, apprX + 15, currentY + 6);
-
-			currentY += 35;
-			string footerMsg = "KEY LUXURY STORE • OFFICIAL CONFIDENTIAL REPORT";
-			g.DrawString(footerMsg, new Font("Segoe UI", 8, FontStyle.Bold), Brushes.Gray, startX + (printWidth - g.MeasureString(footerMsg, new Font("Segoe UI", 8, FontStyle.Bold)).Width) / 2, currentY);
-
-			e.HasMorePages = false;
+			catch (Exception ex)
+			{
+				MessageBox.Show("Printing layout error: " + ex.Message, "Print Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
 		}
 	}
 }

@@ -29,8 +29,8 @@ namespace key_luxery1
 			cmbCategory.Items.Add("Utilities & Bills");
 			cmbCategory.Items.Add("Payroll & Salaries");
 			cmbCategory.Items.Add("Marketing & Ads");
-			cmbCategory.Items.Add("Packaging & Supplies");
-			cmbCategory.Items.Add("Software & POS");
+			cmbCategory.Items.Add("Transportation");
+			//cmbCategory.Items.Add("Software & POS");
 			cmbCategory.Items.Add("Maintenance & Repairs");
 			cmbCategory.Items.Add("Taxes & Insurance");
 			cmbCategory.Items.Add("Miscellaneous");

@@ -101,7 +101,7 @@ namespace key_luxery1
 		private void chkShowPassword_CheckedChanged(object sender, EventArgs e)
 		{
 			// If the checkbox is checked, reveal the password text; otherwise, mask it.
-			if (chkShowPassword.Checked==true)
+			if (chkShowPassword.Checked == true)
 			{
 				TxtPassword.UseSystemPasswordChar = false;
 			}

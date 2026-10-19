@@ -130,6 +130,7 @@
 			this.txtSearchCustomerPhone.Name = "txtSearchCustomerPhone";
 			this.txtSearchCustomerPhone.Size = new System.Drawing.Size(150, 29);
 			this.txtSearchCustomerPhone.TabIndex = 0;
+			this.txtSearchCustomerPhone.TextChanged += new System.EventHandler(this.txtSearchCustomerPhone_TextChanged);
 			// 
 			// btnFindCustomer
 			// 
