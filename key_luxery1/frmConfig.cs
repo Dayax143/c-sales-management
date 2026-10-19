@@ -109,7 +109,7 @@ namespace key_luxery1
 		private void btnDone_Click(object sender, EventArgs e)
         {
             this.Hide();
-            frmDashboard loginForm = new frmDashboard();
+            frmLogin loginForm = new frmLogin();
             loginForm.ShowDialog();
         }
     }
